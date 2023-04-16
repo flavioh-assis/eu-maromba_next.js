@@ -21,7 +21,8 @@ export default function Home() {
 					<CardWorkoutSheet
 						id={sheet.id}
 						name={sheet.name}
-						amountTrainings={sheet.position | 10}
+						position={sheet.position}
+						trainingCount={sheet.trainingCount}
 					/>
 				))}
 			</div>
