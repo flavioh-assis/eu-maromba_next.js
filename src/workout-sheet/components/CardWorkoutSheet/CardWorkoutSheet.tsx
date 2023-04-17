@@ -2,14 +2,19 @@ import { HiPencil } from 'react-icons/hi';
 import { TbMenuOrder } from 'react-icons/tb';
 import { IoTrash } from 'react-icons/io5';
 import { WorkoutSheet } from '@/workout-sheet/workout-sheet.types';
+import Link from 'next/link';
 
 type Props = WorkoutSheet;
 
 export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) => {
 	return (
-		<a
+		<Link
 			className='flex justify-between items-center p-6 rounded-md w-full bg-white shadow-md transition duration-300 ease-in-out transform-gpu hover:shadow-xl hover:-translate-y-1'
 			role='button'
+			href={{
+				pathname: '/trainings',
+				query: { workoutSheetId: id },
+			}}
 		>
 			<div className='flex flex-1'>
 				<span className='font-semibold text-xl leading-10'>{name}</span>
@@ -35,6 +40,6 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 					</a>
 				</div>
 			</div>
-		</a>
+		</Link>
 	);
 };
