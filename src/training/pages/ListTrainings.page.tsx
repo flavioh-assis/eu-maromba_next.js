@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useQueryTrainings } from '../training.service';
+import { CardTraining } from '../components';
 
 export const ListTrainings = () => {
 	const router = useRouter();
@@ -11,9 +12,22 @@ export const ListTrainings = () => {
 		const trainings = data || [];
 
 		return (
-			<main className='flex flex-col min-h-screen items-center p-6 gap-6'>
+			<main className='flex flex-col min-h-screen items-center p-6 gap-2'>
 				{trainings.length ? (
-					trainings.map(t => <p key={t.id}>{t.exercise.name}</p>)
+					trainings.map(t => (
+						<CardTraining
+							key={t.id}
+							id={t.id}
+							workoutSheetId={t.workoutSheet.id}
+							exerciseId={t.exercise.id}
+							exerciseName={t.exercise.name}
+							sets={t.sets}
+							reps={t.reps}
+							restTime={t.restTime}
+							obs={t.obs}
+							position={t.position}
+						/>
+					))
 				) : (
 					<p>Sem treinos</p>
 				)}
