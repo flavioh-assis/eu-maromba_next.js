@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import imageBolsoPai from './bolsopai.png';
-import gifAbs from './abs.gif';
+import gifAbs from './abs (1).gif';
 
 type TrainingProps = {
 	id: number;
@@ -26,11 +25,10 @@ export const CardTraining = ({
 	sets,
 }: TrainingProps) => {
 	return (
-		<div className='flex flex-col w-full p-4 gap-2 rounded-md shadow-md bg-white md:flex-row md:justify-start md:gap-4'>
+		<div className='flex flex-col w-full p-4 gap-2 rounded-md shadow-md bg-white md:flex-row md:justify-start md:gap-10'>
 			<Image
-				className='object-contain h-full w-full m-auto rounded-md max-h-96  md:w-48 md:max-h-48'
+				className='object-contain h-full w-full m-auto rounded-md max-h-96 md:w-48 md:max-h-48'
 				src={gifAbs}
-				// src={imageBolsoPai}
 				alt=''
 			/>
 
@@ -49,8 +47,7 @@ export const CardTraining = ({
 					</span>
 
 					<span className='font-normal mt-2 text-gray-700'>
-						Observação: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum sapien. Vestibulum sapien sapien.
+						Observação: {obs || 'nenhuma'}
 					</span>
 				</div>
 			</div>
