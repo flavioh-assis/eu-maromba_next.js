@@ -1,6 +1,5 @@
 import { CardWorkoutSheet } from '@/workout-sheet/components';
 import { UseQueryAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
-// import Image from 'next/image';
 
 export default function Home() {
 	const { data } = UseQueryAllWorkoutSheets();
@@ -10,7 +9,7 @@ export default function Home() {
 		<main className='flex flex-col min-h-screen items-center p-6 gap-6'>
 			<h1 className='text-2xl font-bold'>Minhas fichas</h1>
 
-			<div className='flex flex-col gap-3 w-full font'>
+			<div className='flex flex-col gap-3 w-full'>
 				{workoutSheets.length ? (
 					workoutSheets?.map(sheet => (
 						<CardWorkoutSheet
