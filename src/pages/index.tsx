@@ -11,15 +11,19 @@ export default function Home() {
 			<h1 className='text-2xl font-bold'>Minhas fichas</h1>
 
 			<div className='flex flex-col gap-3 w-full font'>
-				{workoutSheets?.map(sheet => (
-					<CardWorkoutSheet
-						key={sheet.id}
-						id={sheet.id}
-						name={sheet.name}
-						position={sheet.position}
-						trainingCount={sheet.trainingCount}
-					/>
-				))}
+				{workoutSheets.length ? (
+					workoutSheets?.map(sheet => (
+						<CardWorkoutSheet
+							key={sheet.id}
+							id={sheet.id}
+							name={sheet.name}
+							position={sheet.position}
+							trainingCount={sheet.trainingCount}
+						/>
+					))
+				) : (
+					<p className='self-center'>Você não criou nenhuma ficha :(</p>
+				)}
 			</div>
 		</main>
 	);
