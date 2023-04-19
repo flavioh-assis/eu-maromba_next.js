@@ -1,8 +1,8 @@
 import { CardWorkoutSheet } from '@/workout-sheet/components';
-import { UseQueryAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
+import { useQueryAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
 
 export default function Home() {
-	const { data } = UseQueryAllWorkoutSheets();
+	const { data } = useQueryAllWorkoutSheets();
 	const workoutSheets = data || [];
 
 	return (
