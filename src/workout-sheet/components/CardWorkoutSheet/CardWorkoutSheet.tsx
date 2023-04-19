@@ -27,14 +27,14 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 		<>
 			<div className='flex items-center justify-between w-full px-4 transition duration-300 bg-white rounded-md shadow-md hover:shadow-xl hover:-translate-y-1 sm:text-sm'>
 				<button
-					className='flex w-2/5 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
+					className='flex w-1/2 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
 					onClick={handleListTrainings}
 					title='Visualizar os treinos'
 				>
 					<span className='text-sm font-semibold sm:text-xl'>{name}</span>
 				</button>
 
-				<div className='flex justify-between w-3/5'>
+				<div className='flex justify-between w-1/2'>
 					<button
 						onClick={handleListTrainings}
 						title='Visualizar os treinos'
