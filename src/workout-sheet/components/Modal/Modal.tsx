@@ -19,38 +19,38 @@ export const Modal = ({
 		alert(id + ' deletado');
 	};
 
+	const trainingText = () => {
+		return trainingCount > 0 ? (
+			<>
+				A ficha <strong>possui {trainingCount} treinos. </strong>
+				<span>Todos serão excluídos!</span>
+			</>
+		) : (
+			<span>A ficha não possui treinos.</span>
+		);
+	};
+
 	return (
 		<>
 			{open && (
 				<dialog className='flex justify-center items-center absolute h-full w-full inset-0 z-50 bg-black-80'>
 					<div className='flex flex-col p-6 gap-5 bg-white w-11/12 mx-auto rounded-md z-50 overflow-y-auto md:max-w-lg'>
 						<div className='flex justify-between items-center'>
-							<p className='text-2xl font-bold'>Excluir ficha</p>
+							<h3 className='text-2xl font-bold'>Excluir ficha</h3>
 
-							<div
+							<IoClose
+								fontSize={28}
 								onClick={toggleModal}
-								className='cursor-pointer z-50 transform hover:scale-125 transition duration-300'
-							>
-								<IoClose fontSize={28} />
-							</div>
+								className='cursor-pointer transform hover:scale-125 transition duration-300'
+							/>
 						</div>
 
 						<div className='flex flex-col'>
 							<p>
 								Deseja remover a ficha <strong>{workoutSheetName}</strong>?
 							</p>
-							<p>
-								A ficha{' '}
-								{trainingCount > 0 ? (
-									<>
-										<strong>possui {trainingCount} treinos.</strong>
-										<span> Todos serão excluídos.</span>
-									</>
-								) : (
-									'não possui treinos.'
-								)}
-							</p>
-							<p>Essa ação não poderá ser revertida.</p>
+							<p>{trainingText()}</p>
+							<p>Essa ação não poderá ser desfeita.</p>
 						</div>
 
 						<div className='flex justify-end gap-4'>
