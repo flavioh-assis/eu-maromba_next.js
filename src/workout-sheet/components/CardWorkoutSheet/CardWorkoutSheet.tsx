@@ -25,31 +25,31 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 
 	return (
 		<>
-			<div className='flex justify-between items-center p-6 rounded-md w-full bg-white shadow-md transition duration-300 ease-in-out transform-gpu hover:shadow-xl hover:-translate-y-1'>
+			<div className='flex items-center justify-between w-full px-4 transition duration-300 bg-white rounded-md shadow-md hover:shadow-xl hover:-translate-y-1 sm:text-sm'>
 				<button
-					className='flex flex-1'
+					className='flex w-2/5 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
 					onClick={handleListTrainings}
 					title='Visualizar os treinos'
 				>
-					<span className='font-semibold text-xl leading-10'>{name}</span>
+					<span className='text-sm font-semibold sm:text-xl'>{name}</span>
 				</button>
 
-				<div className='flex flex-1 justify-between'>
+				<div className='flex justify-between w-3/5'>
 					<button
-						className='flex flex-1'
 						onClick={handleListTrainings}
 						title='Visualizar os treinos'
+						className='flex w-1/2 items-center min-h-[4rem] mr-1 sm:min-h-[8rem] bg-blue-0'
 					>
-						<span className='text-xl leading-10'>{trainingCount} treinos</span>
+						<span className='text-sm sm:text-xl'>{trainingCount} treinos</span>
 					</button>
 
-					<div className='flex gap-2 items-center'>
+					<div className='flex items-center gap-2'>
 						<Link
 							role='button'
 							href='#'
 							title='Editar nome da ficha'
 						>
-							<HiPencil className='text-3xl hover:text-green-500 transition duration-300 ease-in-out' />
+							<HiPencil className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:text-green-500' />
 						</Link>
 
 						<Link
@@ -57,16 +57,15 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 							href='#'
 							title='Reordenar fichas'
 						>
-							<TbMenuOrder className='text-3xl hover:text-blue-500 transition duration-300 ease-in-out' />
+							<TbMenuOrder className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:text-blue-500' />
 						</Link>
 
 						<a
 							role='button'
-							href='#'
 							title='Excluir ficha'
 							onClick={toggleModal}
 						>
-							<IoTrash className='text-3xl hover:text-red-500 transition duration-300 ease-in-out' />
+							<IoTrash className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:text-red-500' />
 						</a>
 					</div>
 				</div>
