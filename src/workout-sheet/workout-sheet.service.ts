@@ -5,22 +5,30 @@ import { WorkoutSheet } from './workout-sheet.types';
 const workoutSheetUrl = 'workout-sheets';
 const fiveSeconds = 5000;
 
-const getAllWorkoutSheets = async () => {
+const getAll = async () => {
 	const { data } = await api.get(workoutSheetUrl);
 
 	return data as WorkoutSheet[];
 };
 
-export const UseQueryAllWorkoutSheets = () => {
+const remove = async (id: number) => {
+	const url = `${workoutSheetUrl}/${id}`;
+
+	return await api.delete(url);
+};
+
+export const useQueryAllWorkoutSheets = () => {
 	return useQuery({
 		queryKey: 'getAllWorkoutSheets',
-		queryFn: getAllWorkoutSheets,
+		queryFn: getAll,
 		enabled: true,
 		retryDelay: fiveSeconds,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});
 };
+
+export const useMutationDeleteWorkoutSheet = () => useMutation(remove);
 
 // const createFruit = async (fruit: FruitDto) => {
 // 	return await api.post(fruitsUrl, fruit);
@@ -32,14 +40,6 @@ export const UseQueryAllWorkoutSheets = () => {
 // 	return await api.put(url, fruit);
 // };
 
-// const deleteFruit = async (id: number) => {
-// 	const url = `${fruitsUrl}/${id}`;
-
-// 	return await api.delete(url);
-// };
-
 // export const MutationCreate = () => useMutation(createFruit);
 
 // export const MutationUpdate = () => useMutation(updateFruit);
-
-// export const MutationDelete = () => useMutation(deleteFruit);
