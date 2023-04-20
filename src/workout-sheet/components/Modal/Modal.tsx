@@ -28,7 +28,7 @@ export const Modal = ({
 				alert(message);
 			},
 			onSuccess: () => {
-				alert('Ficha excluída com sucesso.');
+				toggleModal();
 			},
 		});
 	};
