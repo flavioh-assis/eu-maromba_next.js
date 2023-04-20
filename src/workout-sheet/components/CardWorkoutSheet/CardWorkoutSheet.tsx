@@ -6,13 +6,15 @@ import { WorkoutSheet } from '@/workout-sheet/workout-sheet.types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ModalDelete } from '../ModalDelete/ModalDelete';
+import { ModalUpdate } from '../ModalUpdate/ModalUpdate';
 
 type Props = WorkoutSheet;
 
 export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) => {
 	const router = useRouter();
 
-	const [open, setOpen] = useState(false);
+	const [openModalDelete, setOpenModalDelete] = useState(false);
+	const [openModalUpdate, setOpenModalUpdate] = useState(false);
 
 	const handleListTrainings = () => {
 		router.push(
@@ -24,11 +26,13 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 		);
 	};
 
-	const toggleModal = () => setOpen(prev => !prev);
+	const toggleModalDelete = () => setOpenModalDelete(prev => !prev);
+
+	const toggleModalUpdate = () => setOpenModalUpdate(prev => !prev);
 
 	return (
 		<>
-			<div className='flex items-center justify-between w-full px-2 transition duration-300 bg-white rounded-md shadow-md md:px-4 hover:shadow-xl hover:-translate-y-1 sm:text-sm'>
+			<div className='flex items-center justify-between w-full px-2 transition duration-300 bg-white rounded-md shadow-md sm:px-4 hover:shadow-xl hover:-translate-y-1 sm:text-sm'>
 				<button
 					className='flex w-1/2 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
 					onClick={handleListTrainings}
@@ -47,13 +51,12 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 					</button>
 
 					<div className='flex items-center gap-1 sm:gap-2'>
-						<Link
-							role='button'
-							href='#'
+						<button
 							title='Editar nome da ficha'
+							onClick={toggleModalUpdate}
 						>
 							<HiPencil className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:scale-125' />
-						</Link>
+						</button>
 
 						<Link
 							role='button'
@@ -63,23 +66,29 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 							<TbMenuOrder className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:scale-125' />
 						</Link>
 
-						<a
-							role='button'
+						<button
 							title='Excluir ficha'
-							onClick={toggleModal}
+							onClick={toggleModalDelete}
 						>
 							<IoTrash className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:scale-125' />
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
 
 			<ModalDelete
 				id={id}
-				open={open}
+				open={openModalDelete}
 				trainingCount={trainingCount}
 				workoutSheetName={name}
-				toggleModal={toggleModal}
+				toggleModal={toggleModalDelete}
+			/>
+
+			<ModalUpdate
+				id={id}
+				open={openModalUpdate}
+				currentName={name}
+				toggleModal={toggleModalUpdate}
 			/>
 		</>
 	);
