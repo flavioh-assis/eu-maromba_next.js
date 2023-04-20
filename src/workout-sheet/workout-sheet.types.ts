@@ -4,3 +4,8 @@ export type WorkoutSheet = {
 	position: number;
 	trainingCount: number;
 };
+
+export type WorkoutSheetUpdateDto = {
+	id: number;
+	name: string;
+};
