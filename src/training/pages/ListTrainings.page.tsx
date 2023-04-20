@@ -12,10 +12,10 @@ export const ListTrainings = () => {
 		const trainings = data || [];
 
 		return (
-			<main className='flex flex-col min-h-screen items-center p-6 gap-6'>
+			<main className='flex flex-col items-center min-h-screen gap-6 p-6'>
 				<h1 className='text-2xl font-bold'>Meus treinos</h1>
 
-				<div className='flex flex-col gap-3 w-full'>
+				<div className='flex flex-col items-center w-full gap-3'>
 					{trainings.length ? (
 						trainings.map(t => (
 							<CardTraining
@@ -32,7 +32,7 @@ export const ListTrainings = () => {
 							/>
 						))
 					) : (
-						<p>Sem treinos</p>
+						<p>Sem treinos :(</p>
 					)}
 				</div>
 			</main>
@@ -40,7 +40,7 @@ export const ListTrainings = () => {
 	}
 
 	return (
-		<main className='flex flex-col min-h-screen items-center p-6 gap-6'>
+		<main className='flex flex-col items-center min-h-screen gap-6 p-6'>
 			<h1 className='text-xl font-bold'>
 				Nenhuma ficha selecionada para listar os treinos
 			</h1>

@@ -9,7 +9,7 @@ export default function Home() {
 		<main className='flex flex-col items-center min-h-screen gap-2 p-2 sm:gap-6 sm:p-6'>
 			<h1 className='text-lg font-bold sm:text-2xl'>Minhas fichas</h1>
 
-			<div className='flex flex-col w-full gap-3'>
+			<div className='flex flex-col items-center w-full gap-3'>
 				{workoutSheets.length ? (
 					workoutSheets?.map(sheet => (
 						<CardWorkoutSheet
@@ -21,7 +21,7 @@ export default function Home() {
 						/>
 					))
 				) : (
-					<p className='self-center'>Você não criou nenhuma ficha :(</p>
+					<p>Você não criou nenhuma ficha :(</p>
 				)}
 			</div>
 		</main>
