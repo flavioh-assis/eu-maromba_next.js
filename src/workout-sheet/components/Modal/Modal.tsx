@@ -1,3 +1,5 @@
+import { useMutationDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
+import { AxiosError } from 'axios';
 import { IoClose } from 'react-icons/io5';
 
 export type Props = {
@@ -15,8 +17,20 @@ export const Modal = ({
 	trainingCount,
 	workoutSheetName,
 }: Props) => {
+	const { mutate } = useMutationDeleteWorkoutSheet();
+
 	const handleDelete = () => {
-		alert(id + ' deletado');
+		mutate(id, {
+			onError: e => {
+				const { response } = e as unknown as AxiosError;
+				const { message } = response?.data as { message: string };
+
+				alert(message);
+			},
+			onSuccess: () => {
+				alert('Ficha excluída com sucesso.');
+			},
+		});
 	};
 
 	const trainingText = () => {
