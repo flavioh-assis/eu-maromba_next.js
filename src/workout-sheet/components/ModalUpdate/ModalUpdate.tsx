@@ -1,7 +1,7 @@
 import { useMutationUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '../Modal/Modal';
 import { useState } from 'react';
-import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 type Props = {
 	id: number;
@@ -9,6 +9,7 @@ type Props = {
 	currentName: string;
 	toggleModal: VoidFunction;
 };
+
 export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 	const { mutate } = useMutationUpdateWorkoutSheet();
 
@@ -21,18 +22,16 @@ export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 		};
 
 		if (name === '') {
-			alert('Erro! O nome da ficha não pode ser vazio!');
+			toast.error('O texto não pode ser vazio.');
 			return;
 		}
 
 		mutate(dto, {
-			onError: e => {
-				const { response } = e as AxiosError;
-				const { message } = response?.data as { message: string };
-
-				alert(message);
+			onError: () => {
+				toast.error('Algo deu errado.');
 			},
 			onSuccess: () => {
+				toast.success('Ficha atualizada!');
 				toggleModal();
 			},
 		});
