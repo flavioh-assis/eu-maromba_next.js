@@ -47,7 +47,9 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 						title='Visualizar os treinos'
 						className='flex w-1/2 items-center min-h-[4rem] mr-1 sm:min-h-[8rem] bg-blue-0'
 					>
-						<span className='text-sm sm:text-xl'>{trainingCount} treinos</span>
+						<span className='text-sm sm:text-xl'>
+							{trainingCount} treino{trainingCount != 1 && 's'}
+						</span>
 					</button>
 
 					<div className='flex items-center gap-1 sm:gap-2'>
