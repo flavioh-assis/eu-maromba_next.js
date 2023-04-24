@@ -1,5 +1,6 @@
 import { CardWorkoutSheet } from '@/workout-sheet/components';
 import { useQueryAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 	const { data } = useQueryAllWorkoutSheets();
