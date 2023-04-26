@@ -3,7 +3,7 @@ import { useCreateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { toast } from 'react-toastify';
 import { Modal } from '@/workout-sheet/components';
 import { useAppDispatch } from '@/store/hooks';
-import { add } from '@/store/reducers/workout-sheet';
+import { add } from '@/store/workout-sheet/actions';
 
 type Props = {
 	open: boolean;

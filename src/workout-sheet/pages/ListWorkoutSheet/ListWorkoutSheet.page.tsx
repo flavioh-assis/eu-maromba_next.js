@@ -1,5 +1,5 @@
+import * as store from '@/store/workout-sheet/actions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { populate } from '@/store/reducers/workout-sheet';
 import { CardWorkoutSheet } from '@/workout-sheet/components';
 import { ModalCreate } from '@/workout-sheet/components';
 import { useGetAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
@@ -16,7 +16,7 @@ export const ListWorkoutSheet = () => {
 	const toggleModal = () => setOpenModal(open => !open);
 
 	useEffect(() => {
-		data && dispatch(populate(data));
+		data && dispatch(store.populate(data));
 	}, [data]);
 
 	return (

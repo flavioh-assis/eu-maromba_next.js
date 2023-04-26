@@ -1,6 +1,8 @@
 import { useDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '@/store/hooks';
+import * as store from '@/store/workout-sheet/actions';
 
 type Props = {
 	id: number;
@@ -17,6 +19,8 @@ export const ModalDelete = ({
 	workoutSheetName,
 	toggleModal,
 }: Props) => {
+	const dispatch = useAppDispatch();
+
 	const { mutate } = useDeleteWorkoutSheet();
 
 	const handleDelete = () => {
@@ -25,6 +29,7 @@ export const ModalDelete = ({
 				toast.error('Algo deu errado.');
 			},
 			onSuccess: () => {
+				dispatch(store.remove(id));
 				toast.success('Ficha excluída!');
 				toggleModal();
 			},

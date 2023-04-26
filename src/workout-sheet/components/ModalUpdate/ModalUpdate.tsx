@@ -2,6 +2,8 @@ import { useUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '@/store/hooks';
+import * as store from '@/store/workout-sheet/actions';
 
 type Props = {
 	id: number;
@@ -11,6 +13,8 @@ type Props = {
 };
 
 export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
+	const dispatch = useAppDispatch();
+
 	const { mutate } = useUpdateWorkoutSheet();
 
 	const [name, setName] = useState(currentName);
@@ -30,7 +34,8 @@ export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 			onError: () => {
 				toast.error('Algo deu errado.');
 			},
-			onSuccess: () => {
+			onSuccess: response => {
+				dispatch(store.update(response));
 				toast.success('Ficha atualizada!');
 				toggleModal();
 			},

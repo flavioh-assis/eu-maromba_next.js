@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useQueryTrainings } from '../training.service';
+import { useGetTrainingsFromSheet } from '../training.service';
 import { CardTraining } from '../components';
 
 export const ListTrainings = () => {
@@ -8,7 +8,7 @@ export const ListTrainings = () => {
 	const workoutSheetId = Number(query.workoutSheetId);
 
 	if (workoutSheetId) {
-		const { data } = useQueryTrainings(workoutSheetId);
+		const { data } = useGetTrainingsFromSheet(workoutSheetId);
 		const trainings = data || [];
 
 		return (

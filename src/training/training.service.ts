@@ -12,9 +12,9 @@ const getTrainingsByWorkoutSheetId = async (workoutSheetId: number) => {
 	return data as Training[];
 };
 
-export const useQueryTrainings = (workoutSheetId: number) => {
+export const useGetTrainingsFromSheet = (workoutSheetId: number) => {
 	return useQuery({
-		queryKey: 'getTrainings' + workoutSheetId,
+		queryKey: 'getTrainingsFromSheet',
 		queryFn: () => getTrainingsByWorkoutSheetId(workoutSheetId),
 		enabled: true,
 		retryDelay: fiveSeconds,
