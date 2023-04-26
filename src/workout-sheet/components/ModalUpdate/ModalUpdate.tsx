@@ -39,7 +39,6 @@ export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 
 	return (
 		<Modal
-			id={id}
 			open={open}
 			title='Alterar ficha'
 			handleConfirm={handleUpdate}

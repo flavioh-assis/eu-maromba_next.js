@@ -46,7 +46,6 @@ export const ModalDelete = ({
 
 	return (
 		<Modal
-			id={id}
 			open={open}
 			title='Excluir ficha'
 			handleConfirm={handleDelete}
