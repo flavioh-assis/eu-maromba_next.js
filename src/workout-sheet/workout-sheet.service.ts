@@ -25,7 +25,7 @@ const remove = async (id: number) => {
 	return await api.delete(url);
 };
 
-export const useQueryAllWorkoutSheets = () => {
+export const useGetAllWorkoutSheets = () => {
 	return useQuery({
 		queryKey: 'getAllWorkoutSheets',
 		queryFn: getAll,
