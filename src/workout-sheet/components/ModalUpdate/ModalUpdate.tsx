@@ -1,5 +1,5 @@
 import { useMutationUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
-import { Modal } from '../Modal/Modal';
+import { Modal } from '@/workout-sheet/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -16,15 +16,15 @@ export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 	const [name, setName] = useState(currentName);
 
 	const handleUpdate = () => {
-		const dto = {
-			id,
-			name,
-		};
-
 		if (name === '') {
 			toast.error('O texto não pode ser vazio.');
 			return;
 		}
+
+		const dto = {
+			id,
+			name,
+		};
 
 		mutate(dto, {
 			onError: () => {

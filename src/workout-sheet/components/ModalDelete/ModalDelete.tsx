@@ -1,5 +1,5 @@
 import { useMutationDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
-import { Modal } from '../Modal/Modal';
+import { Modal } from '@/workout-sheet/components';
 import { AxiosError } from 'axios';
 
 type Props = {

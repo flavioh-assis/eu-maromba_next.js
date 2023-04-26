@@ -5,8 +5,7 @@ import { IoTrash } from 'react-icons/io5';
 import { WorkoutSheet } from '@/workout-sheet/workout-sheet.types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ModalDelete } from '../ModalDelete/ModalDelete';
-import { ModalUpdate } from '../ModalUpdate/ModalUpdate';
+import { ModalDelete, ModalUpdate } from '@/workout-sheet/components';
 
 type Props = WorkoutSheet;
 
