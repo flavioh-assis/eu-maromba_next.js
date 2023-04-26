@@ -5,9 +5,10 @@ export type WorkoutSheet = {
 	trainingCount: number;
 };
 
-export type WorkoutSheetUpdateDto = {
+export type UpdateWorkoutSheetDto = {
 	id: number;
 	name: string;
+	position?: number;
 };
 
 export type CreateWorkoutSheetDto = {

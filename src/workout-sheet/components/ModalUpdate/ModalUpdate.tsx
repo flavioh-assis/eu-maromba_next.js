@@ -1,4 +1,4 @@
-import { useMutationUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
+import { useUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
-	const { mutate } = useMutationUpdateWorkoutSheet();
+	const { mutate } = useUpdateWorkoutSheet();
 
 	const [name, setName] = useState(currentName);
 

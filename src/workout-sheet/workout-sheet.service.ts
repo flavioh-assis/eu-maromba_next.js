@@ -3,14 +3,14 @@ import api from '@/services/api';
 import {
 	CreateWorkoutSheetDto,
 	WorkoutSheet,
-	WorkoutSheetUpdateDto,
+	UpdateWorkoutSheetDto,
 } from './workout-sheet.types';
 
 const workoutSheetUrl = 'workout-sheets';
 const fiveSeconds = 5000;
 
-const create = async (sheet: CreateWorkoutSheetDto) => {
-	const { data } = await api.post(workoutSheetUrl, sheet);
+const create = async (dto: CreateWorkoutSheetDto) => {
+	const { data } = await api.post(workoutSheetUrl, dto);
 
 	return data as WorkoutSheet;
 };
@@ -21,9 +21,8 @@ const getAll = async () => {
 	return data as WorkoutSheet[];
 };
 
-const update = async (dto: WorkoutSheetUpdateDto) => {
+const update = async (dto: UpdateWorkoutSheetDto) => {
 	const url = `${workoutSheetUrl}/${dto.id}`;
-
 	const { data } = await api.patch(url, dto);
 
 	return data as WorkoutSheet;
@@ -48,6 +47,6 @@ export const useGetAllWorkoutSheets = () => {
 	});
 };
 
-export const useMutationUpdateWorkoutSheet = () => useMutation(update);
+export const useUpdateWorkoutSheet = () => useMutation(update);
 
-export const useMutationDeleteWorkoutSheet = () => useMutation(remove);
+export const useDeleteWorkoutSheet = () => useMutation(remove);

@@ -1,4 +1,4 @@
-import { useMutationDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
+import { useDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
 import { toast } from 'react-toastify';
 
@@ -17,7 +17,7 @@ export const ModalDelete = ({
 	workoutSheetName,
 	toggleModal,
 }: Props) => {
-	const { mutate } = useMutationDeleteWorkoutSheet();
+	const { mutate } = useDeleteWorkoutSheet();
 
 	const handleDelete = () => {
 		mutate(id, {

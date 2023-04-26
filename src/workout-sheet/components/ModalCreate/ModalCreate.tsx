@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useCreateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { toast } from 'react-toastify';
 import { Modal } from '@/workout-sheet/components';
+import { useAppDispatch } from '@/store/hooks';
+import { add } from '@/store/reducers/workout-sheet';
 
 type Props = {
 	open: boolean;
@@ -9,6 +11,8 @@ type Props = {
 };
 
 export const ModalCreate = ({ open, toggleModal }: Props) => {
+	const dispatch = useAppDispatch();
+
 	const { mutate } = useCreateWorkoutSheet();
 
 	const [name, setName] = useState('');
@@ -27,7 +31,8 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 			onError: () => {
 				toast.error('Algo deu errado.');
 			},
-			onSuccess: () => {
+			onSuccess: response => {
+				dispatch(add(response));
 				toast.success('Ficha criada!');
 				toggleModal();
 			},
