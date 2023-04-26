@@ -9,3 +9,7 @@ export type WorkoutSheetUpdateDto = {
 	id: number;
 	name: string;
 };
+
+export type CreateWorkoutSheetDto = {
+	name: string;
+};
