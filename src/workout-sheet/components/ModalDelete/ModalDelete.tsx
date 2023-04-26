@@ -1,6 +1,6 @@
 import { useMutationDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
-import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 type Props = {
 	id: number;
@@ -21,13 +21,11 @@ export const ModalDelete = ({
 
 	const handleDelete = () => {
 		mutate(id, {
-			onError: e => {
-				const { response } = e as unknown as AxiosError;
-				const { message } = response?.data as { message: string };
-
-				alert(message);
+			onError: () => {
+				toast.error('Algo deu errado.');
 			},
 			onSuccess: () => {
+				toast.success('Ficha excluída!');
 				toggleModal();
 			},
 		});
