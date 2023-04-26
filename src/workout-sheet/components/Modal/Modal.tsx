@@ -2,7 +2,6 @@ import { FC, ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';
 
 export type Props = {
-	id: number;
 	open: boolean;
 	title: string;
 	handleConfirm: VoidFunction;
@@ -11,7 +10,6 @@ export type Props = {
 };
 
 export const Modal: FC<Props> = ({
-	id,
 	open,
 	title,
 	handleConfirm,
@@ -38,14 +36,14 @@ export const Modal: FC<Props> = ({
 						<div className='flex justify-end gap-4'>
 							<button
 								onClick={toggleModal}
-								className='p-3 px-4 text-black transition duration-300 rounded-md shadow-md hover:bg-gray-200'
+								className='px-4 py-2 text-black transition duration-300 rounded-md shadow-md hover:bg-gray-200'
 							>
 								Cancelar
 							</button>
 
 							<button
 								onClick={handleConfirm}
-								className='p-3 px-4 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+								className='px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
 							>
 								Confirmar
 							</button>
