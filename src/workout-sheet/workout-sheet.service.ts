@@ -1,9 +1,19 @@
 import { useMutation, useQuery } from 'react-query';
 import api from '@/services/api';
-import { WorkoutSheet, WorkoutSheetUpdateDto } from './workout-sheet.types';
+import {
+	CreateWorkoutSheetDto,
+	WorkoutSheet,
+	WorkoutSheetUpdateDto,
+} from './workout-sheet.types';
 
 const workoutSheetUrl = 'workout-sheets';
 const fiveSeconds = 5000;
+
+const create = async (sheet: CreateWorkoutSheetDto) => {
+	const { data } = await api.post(workoutSheetUrl, sheet);
+
+	return data as WorkoutSheet;
+};
 
 const getAll = async () => {
 	const { data } = await api.get(workoutSheetUrl);
@@ -25,6 +35,8 @@ const remove = async (id: number) => {
 	return await api.delete(url);
 };
 
+export const useCreateWorkoutSheet = () => useMutation(create);
+
 export const useGetAllWorkoutSheets = () => {
 	return useQuery({
 		queryKey: 'getAllWorkoutSheets',
@@ -39,9 +51,3 @@ export const useGetAllWorkoutSheets = () => {
 export const useMutationUpdateWorkoutSheet = () => useMutation(update);
 
 export const useMutationDeleteWorkoutSheet = () => useMutation(remove);
-
-// const createFruit = async (fruit: FruitDto) => {
-// 	return await api.post(fruitsUrl, fruit);
-// };
-
-// export const MutationCreate = () => useMutation(createFruit);
