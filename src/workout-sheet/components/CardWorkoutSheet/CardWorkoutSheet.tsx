@@ -31,7 +31,7 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 
 	return (
 		<>
-			<div className='flex items-center justify-between w-full px-2 transition duration-300 bg-white rounded-md shadow-sm sm:px-4 hover:shadow-card sm:text-sm'>
+			<div className='flex items-center justify-between w-full px-2 transition-all duration-500 bg-white rounded-md shadow-sm sm:px-4 hover:shadow-card sm:text-sm'>
 				<button
 					className='flex w-1/2 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
 					onClick={handleListTrainings}
@@ -47,7 +47,7 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 						className='flex w-1/2 items-center min-h-[4rem] mr-1 sm:min-h-[8rem] bg-blue-0'
 					>
 						<span className='text-sm sm:text-xl'>
-							{trainingCount} treino{trainingCount != 1 && 's'}
+							{trainingCount} {trainingCount != 1 ? 'treinos' : 'treino'}
 						</span>
 					</button>
 
