@@ -61,7 +61,7 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 
 						<Link
 							role='button'
-							href='#'
+							href='/workout-sheets/reorder'
 							title='Reordenar fichas'
 						>
 							<TbMenuOrder className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:scale-125' />
