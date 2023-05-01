@@ -1,4 +1,4 @@
-import * as store from '@/store/workout-sheet/actions';
+import * as storeWS from '@/store/workout-sheet/actions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { CardWorkoutSheet } from '@/workout-sheet/components';
 import { ModalCreate } from '@/workout-sheet/components';
@@ -9,15 +9,15 @@ export const ListWorkoutSheet = () => {
 	const dispatch = useAppDispatch();
 	const workoutSheets = useAppSelector(state => state.workoutSheet);
 
-	const { data } = useGetAllWorkoutSheets();
+	const { data: apiData } = useGetAllWorkoutSheets();
 
 	const [openModal, setOpenModal] = useState(false);
 
 	const toggleModal = () => setOpenModal(open => !open);
 
 	useEffect(() => {
-		data && dispatch(store.populate(data));
-	}, [data]);
+		apiData && dispatch(storeWS.populate(apiData));
+	}, [apiData]);
 
 	return (
 		<main className='flex flex-col items-center min-h-screen gap-2 p-2 sm:gap-6 sm:p-6'>
