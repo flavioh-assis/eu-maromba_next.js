@@ -2,7 +2,7 @@ import { useDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { Modal } from '@/workout-sheet/components';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
-import * as store from '@/store/workout-sheet/actions';
+import * as storeWS from '@/store/workout-sheet/actions';
 
 type Props = {
 	id: number;
@@ -29,7 +29,7 @@ export const ModalDelete = ({
 				toast.error('Algo deu errado.');
 			},
 			onSuccess: () => {
-				dispatch(store.remove(id));
+				dispatch(storeWS.remove(id));
 				toast.success('Ficha excluída!');
 				toggleModal();
 			},
@@ -56,7 +56,8 @@ export const ModalDelete = ({
 		>
 			<div className='flex flex-col'>
 				<p>
-					Deseja remover a ficha <strong>{workoutSheetName}</strong>?
+					Deseja remover a ficha{' '}
+					<strong className='whitespace-break-spaces'>{workoutSheetName}</strong>?
 				</p>
 				<p>{trainingText()}</p>
 				<p>Essa ação não poderá ser desfeita.</p>
