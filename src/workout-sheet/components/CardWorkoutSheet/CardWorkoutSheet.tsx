@@ -40,11 +40,11 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 					<span className='text-sm font-semibold sm:text-xl'>{name}</span>
 				</button>
 
-				<div className='flex justify-between w-1/2'>
+				<div className='flex w-1/2 gap-2'>
 					<button
 						onClick={handleListTrainings}
 						title='Visualizar os treinos'
-						className='flex w-1/2 items-center min-h-[4rem] mr-1 sm:min-h-[8rem] bg-blue-0'
+						className='flex w-full items-center min-h-[4rem] sm:min-h-[8rem]'
 					>
 						<span className='text-sm sm:text-xl'>
 							{trainingCount} {trainingCount != 1 ? 'treinos' : 'treino'}

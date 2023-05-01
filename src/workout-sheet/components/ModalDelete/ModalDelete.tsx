@@ -57,7 +57,7 @@ export const ModalDelete = ({
 			<div className='flex flex-col'>
 				<p>
 					Deseja remover a ficha{' '}
-					<strong className='whitespace-break-spaces'>{workoutSheetName}</strong>?
+					<strong className='whitespace-nowrap'>{workoutSheetName}</strong>?
 				</p>
 				<p>{trainingText()}</p>
 				<p>Essa ação não poderá ser desfeita.</p>
