@@ -19,8 +19,8 @@ export const Modal: FC<Props> = ({
 	return (
 		<>
 			{open && (
-				<dialog className='fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black-80'>
-					<div className='flex flex-col w-11/12 gap-5 p-6 mx-auto overflow-y-auto bg-white rounded-md md:max-w-lg'>
+				<dialog className='fixed inset-0 z-50 flex items-center justify-center w-full h-full p-6 bg-black-80'>
+					<div className='flex flex-col w-full gap-5 p-6 mx-auto overflow-y-auto bg-white rounded-md md:max-w-lg'>
 						<div className='flex items-center justify-between'>
 							<h3 className='text-2xl font-bold'>{title}</h3>
 
