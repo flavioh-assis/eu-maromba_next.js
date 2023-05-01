@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<QueryClientProvider client={queryClient}>
 				<ToastContainer
 					position='bottom-right'
-					autoClose={3000}
+					autoClose={2000}
 					pauseOnHover
 					theme='light'
 					pauseOnFocusLoss
