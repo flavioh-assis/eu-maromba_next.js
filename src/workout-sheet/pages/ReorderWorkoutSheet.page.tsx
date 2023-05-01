@@ -13,7 +13,6 @@ export const ReorderWorkoutSheet = () => {
 		const { destination, source } = result;
 
 		if (!destination) return;
-		if (destination.droppableId === source.droppableId) return;
 		if (source.index === destination.index) return;
 
 		const items = reorder(workoutSheets, source.index, destination.index);
