@@ -35,7 +35,7 @@ export const ListWorkoutSheet = () => {
 						/>
 					))
 				) : (
-					<p>Você não criou nenhuma ficha :(</p>
+					<p>Você não possui ficha :(</p>
 				)}
 
 				<button
