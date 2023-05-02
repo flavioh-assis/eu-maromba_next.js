@@ -4,6 +4,7 @@ import {
 	CreateWorkoutSheetDto,
 	WorkoutSheet,
 	UpdateWorkoutSheetDto,
+	ReorderWorkoutSheetDto,
 } from './workout-sheet.types';
 
 const workoutSheetUrl = 'workout-sheets';
@@ -17,6 +18,12 @@ const create = async (dto: CreateWorkoutSheetDto) => {
 
 const getAll = async () => {
 	const { data } = await api.get(workoutSheetUrl);
+
+	return data as WorkoutSheet[];
+};
+
+const reorder = async (dto: ReorderWorkoutSheetDto[]) => {
+	const { data } = await api.patch(workoutSheetUrl, dto);
 
 	return data as WorkoutSheet[];
 };
@@ -46,6 +53,8 @@ export const useGetAllWorkoutSheets = () => {
 		refetchOnWindowFocus: false,
 	});
 };
+
+export const useReorderWorkoutSheets = () => useMutation(reorder);
 
 export const useUpdateWorkoutSheet = () => useMutation(update);
 
