@@ -23,7 +23,7 @@ export const ListWorkoutSheet = () => {
 		<main className='flex flex-col items-center min-h-screen gap-2 p-2 sm:gap-6 sm:p-6'>
 			<h1 className='text-lg font-bold sm:text-2xl'>Minhas Fichas</h1>
 
-			<div className='flex flex-col items-center w-full gap-3'>
+			<div className='flex flex-col items-center w-full gap-2 sm:gap-3'>
 				{workoutSheets?.length ? (
 					workoutSheets?.map(sheet => (
 						<CardWorkoutSheet
