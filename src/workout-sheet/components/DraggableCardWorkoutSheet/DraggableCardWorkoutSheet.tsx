@@ -22,7 +22,7 @@ export const DraggableCardWorkoutSheet = ({
 		>
 			{(provided, _) => (
 				<div
-					className='flex items-center justify-between w-full px-2 mb-3 transition-shadow duration-500 bg-white rounded-md shadow-sm sm:px-4 hover:shadow-card sm:text-sm'
+					className='flex items-center justify-between w-full px-2 mb-3 transition-shadow duration-500 bg-white rounded-md shadow-md sm:px-4 hover:shadow-card sm:text-sm'
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}

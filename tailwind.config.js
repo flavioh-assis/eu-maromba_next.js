@@ -12,7 +12,7 @@ module.exports = {
 				'black-80': 'rgba(0,0,0,.8)',
 			},
 			boxShadow: {
-				card: 'rgba(0, 0, 0, 0.08) 0px 6px 16px -8px, rgba(0, 0, 0, 0.05) 0px 9px 28px, rgba(0, 0, 0, 0.03) 0px 12px 48px 16px',
+				card: '20px 20px 60px #d0d0d2, -20px -20px 60px #ffffff',
 			},
 		},
 	},
