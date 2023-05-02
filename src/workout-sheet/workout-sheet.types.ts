@@ -14,3 +14,8 @@ export type UpdateWorkoutSheetDto = {
 export type CreateWorkoutSheetDto = {
 	name: string;
 };
+
+export type ReorderWorkoutSheetDto = {
+	id: number;
+	position: number;
+};
