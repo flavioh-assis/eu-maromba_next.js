@@ -23,12 +23,14 @@ export const Card = ws.div<{ isDraggable?: boolean }>`
 	items-center
 	justify-between
 	w-full
+	gap-2
 	px-2
 	transition-shadow
 	duration-500
 	bg-white
 	rounded-md
 	shadow-md
+	sm:gap-4
 	sm:px-4
 	hover:shadow-card
 	sm:text-sm
