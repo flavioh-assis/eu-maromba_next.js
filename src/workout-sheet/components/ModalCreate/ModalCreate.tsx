@@ -60,6 +60,7 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 					placeholder='Inferiores'
 					value={name}
 					onChange={t => setName(t.target.value)}
+					maxLength={30}
 					className='w-full p-3 leading-tight text-gray-700 border rounded shadow focus:outline-none'
 				/>
 			</div>
