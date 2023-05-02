@@ -6,7 +6,7 @@ import {
 import { ReorderWorkoutSheetDto, WorkoutSheet } from '../../workout-sheet.types';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { DropResult } from 'react-beautiful-dnd';
-import { DraggableCardWorkoutSheet } from '../../components/DraggableCardWorkoutSheet/DraggableCardWorkoutSheet';
+import { DraggableCardWorkoutSheet } from '@/workout-sheet/components';
 import { useAppDispatch } from '@/store/hooks';
 import { toast } from 'react-toastify';
 import * as storeWS from '@/store/workout-sheet/actions';
