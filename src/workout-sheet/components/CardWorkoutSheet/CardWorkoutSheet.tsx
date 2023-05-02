@@ -6,6 +6,7 @@ import { WorkoutSheet } from '@/workout-sheet/workout-sheet.types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ModalDelete, ModalUpdate } from '@/workout-sheet/components';
+import { Card, CardTitle, TrainingAmount } from '@/styles/styled';
 
 type Props = WorkoutSheet;
 
@@ -31,13 +32,13 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 
 	return (
 		<>
-			<div className='flex items-center justify-between w-full px-2 transition-all duration-500 bg-white rounded-md shadow-md sm:px-4 hover:shadow-card sm:text-sm'>
+			<Card>
 				<button
 					className='flex w-1/2 items-center min-h-[4rem] sm:min-h-[8rem] text-left mr-1 bg-red-0'
 					onClick={handleListTrainings}
 					title='Visualizar os treinos'
 				>
-					<span className='text-sm font-semibold sm:text-xl'>{name}</span>
+					<CardTitle>{name}</CardTitle>
 				</button>
 
 				<div className='flex w-1/2 gap-2'>
@@ -46,9 +47,9 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 						title='Visualizar os treinos'
 						className='flex w-full items-center min-h-[4rem] sm:min-h-[8rem]'
 					>
-						<span className='text-sm sm:text-xl'>
+						<TrainingAmount>
 							{trainingCount} {trainingCount != 1 ? 'treinos' : 'treino'}
-						</span>
+						</TrainingAmount>
 					</button>
 
 					<div className='flex items-center gap-1 sm:gap-2'>
@@ -75,7 +76,7 @@ export const CardWorkoutSheet = ({ id, name, position, trainingCount }: Props) =
 						</button>
 					</div>
 				</div>
-			</div>
+			</Card>
 
 			<ModalDelete
 				id={id}

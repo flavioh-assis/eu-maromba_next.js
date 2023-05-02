@@ -1,5 +1,6 @@
 import { MdDragIndicator } from 'react-icons/md';
 import { Draggable } from 'react-beautiful-dnd';
+import { Card } from '@/styles/styled';
 
 type Props = {
 	id: number;
@@ -21,8 +22,8 @@ export const DraggableCardWorkoutSheet = ({
 			index={cardIndex}
 		>
 			{(provided, _) => (
-				<div
-					className='flex items-center justify-between w-full px-2 mb-3 transition-shadow duration-500 bg-white rounded-md shadow-md sm:px-4 hover:shadow-card sm:text-sm'
+				<Card
+					isDraggable={true}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
@@ -40,7 +41,7 @@ export const DraggableCardWorkoutSheet = ({
 							<MdDragIndicator className='text-xl transition duration-300 ease-in-out hover:scale-125 sm:text-3xl' />
 						</div>
 					</div>
-				</div>
+				</Card>
 			)}
 		</Draggable>
 	);
