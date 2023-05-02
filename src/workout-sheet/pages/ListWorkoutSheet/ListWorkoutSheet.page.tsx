@@ -2,50 +2,143 @@ import * as storeWS from '@/store/workout-sheet/actions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { CardWorkoutSheet } from '@/workout-sheet/components';
 import { ModalCreate } from '@/workout-sheet/components';
-import { useGetAllWorkoutSheets } from '@/workout-sheet/workout-sheet.service';
+import {
+	useGetAllWorkoutSheets,
+	useReorderWorkoutSheets,
+} from '@/workout-sheet/workout-sheet.service';
 import { useEffect, useState } from 'react';
 import { Page, Title } from '@/styles/styled';
+import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
+import {
+	ReorderWorkoutSheetDto,
+	WorkoutSheet,
+} from '@/workout-sheet/workout-sheet.types';
+import { toast } from 'react-toastify';
 
 export const ListWorkoutSheet = () => {
 	const dispatch = useAppDispatch();
-	const workoutSheets = useAppSelector(state => state.workoutSheet);
+	const storeWorkoutSheets = useAppSelector(state => state.workoutSheet);
 
 	const { data: apiData } = useGetAllWorkoutSheets();
+	const { mutate } = useReorderWorkoutSheets();
+
+	const [workoutSheets, setWorkoutSheets] = useState<WorkoutSheet[]>([]);
 
 	const [openModal, setOpenModal] = useState(false);
+	const [isDraggable, setIsDraggable] = useState(!true);
 
 	const toggleModal = () => setOpenModal(open => !open);
+
+	const toggleIsDraggable = () => setIsDraggable(state => !state);
+
+	const onDragEnd = (result: DropResult) => {
+		const { destination, source } = result;
+
+		if (!destination) return;
+		if (source.index === destination.index) return;
+
+		const items = reorder(workoutSheets, source.index, destination.index);
+
+		setWorkoutSheets(items);
+	};
+
+	const reorder = (list: WorkoutSheet[], startIndex: number, endIndex: number) => {
+		const result = [...list];
+		const [removed] = result.splice(startIndex, 1);
+		result.splice(endIndex, 0, removed);
+
+		return result;
+	};
+
+	const updatePositions = (list: WorkoutSheet[]) => {
+		return list.map((sheet, idx) => {
+			return {
+				...sheet,
+				position: idx,
+			} as ReorderWorkoutSheetDto;
+		});
+	};
+
+	const handleSave = () => {
+		const orderedList = updatePositions(workoutSheets);
+
+		mutate(orderedList, {
+			onError: () => {
+				toast.error('Algo deu errado!');
+			},
+			onSuccess: response => {
+				dispatch(storeWS.reorder(response));
+				toast.success('Lista atualizada!');
+				toggleIsDraggable();
+			},
+		});
+	};
 
 	useEffect(() => {
 		apiData && dispatch(storeWS.populate(apiData));
 	}, [apiData]);
 
+	useEffect(() => {
+		setWorkoutSheets(storeWorkoutSheets);
+	}, [storeWorkoutSheets]);
+
 	return (
 		<Page>
 			<Title>Minhas Fichas</Title>
 
-			<div className='flex flex-col items-center w-full gap-2 sm:gap-3'>
-				{workoutSheets?.length ? (
-					workoutSheets?.map(sheet => (
-						<CardWorkoutSheet
-							key={sheet.id}
-							id={sheet.id}
-							name={sheet.name}
-							position={sheet.position}
-							trainingCount={sheet.trainingCount}
-						/>
-					))
-				) : (
-					<p>Você não possui ficha :(</p>
-				)}
+			{workoutSheets?.length ? (
+				<DragDropContext onDragEnd={onDragEnd}>
+					<Droppable
+						droppableId='droppable'
+						isDropDisabled={!isDraggable}
+					>
+						{(provided, _) => (
+							<div
+								className='flex flex-col items-center w-full'
+								ref={provided.innerRef}
+								{...provided.droppableProps}
+							>
+								{workoutSheets?.map((sheet, index) => (
+									<CardWorkoutSheet
+										key={sheet.id}
+										id={sheet.id}
+										cardIndex={index}
+										name={sheet.name}
+										trainingCount={sheet.trainingCount}
+										isDraggable={isDraggable}
+									/>
+								))}
+								{provided.placeholder}
 
-				<button
-					onClick={toggleModal}
-					className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
-				>
-					Criar Ficha
-				</button>
-			</div>
+								{isDraggable ? (
+									<button
+										onClick={handleSave}
+										className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+									>
+										Salvar
+									</button>
+								) : (
+									<button
+										onClick={toggleModal}
+										className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+									>
+										Criar Ficha
+									</button>
+								)}
+
+								<button
+									onClick={toggleIsDraggable}
+									className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+								>
+									{isDraggable ? 'Cancelar' : 'Reordenar'}
+								</button>
+							</div>
+						)}
+					</Droppable>
+				</DragDropContext>
+			) : (
+				<p>Você não possui ficha :(</p>
+			)}
 
 			<ModalCreate
 				open={openModal}
