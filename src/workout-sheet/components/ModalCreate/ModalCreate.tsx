@@ -34,9 +34,14 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 			onSuccess: response => {
 				dispatch(add(response));
 				toast.success('Ficha criada!');
-				toggleModal();
+				handleClose();
 			},
 		});
+	};
+
+	const handleClose = () => {
+		setName('');
+		toggleModal();
 	};
 
 	return (
@@ -44,7 +49,7 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 			open={open}
 			title='Criar ficha'
 			handleConfirm={handleCreate}
-			toggleModal={toggleModal}
+			toggleModal={handleClose}
 		>
 			<div>
 				<label
