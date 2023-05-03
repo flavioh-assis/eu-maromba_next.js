@@ -51,7 +51,7 @@ export const CardWorkoutSheet = ({
 			>
 				{(provided, _) => (
 					<Card
-						isDraggable={true}
+						$isDraggable={true}
 						ref={provided.innerRef}
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
@@ -59,7 +59,7 @@ export const CardWorkoutSheet = ({
 						<div
 							title='Visualizar os treinos'
 							onClick={!isDraggable ? handleListTrainings : () => {}}
-							role={!isDraggable ? 'button' : 'banner'}
+							role={!isDraggable ? 'button' : 'contentinfo'}
 							className='flex w-11/12 sm:w-10/12 items-center min-h-[4rem] sm:min-h-[8rem] text-left'
 						>
 							<FlexRow className='w-3/5'>

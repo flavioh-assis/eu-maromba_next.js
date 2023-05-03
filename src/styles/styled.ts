@@ -17,8 +17,8 @@ export const Title = ws.h1`
 	sm:text-2xl
 `;
 
-export const Card = ws.div<{ isDraggable?: boolean }>`
-	${p => p.isDraggable && 'mb-2 sm:mb-3'}
+export const Card = ws.div<{ $isDraggable?: boolean }>`
+	${p => p.$isDraggable && 'mb-2 sm:mb-3'}
 	flex
 	items-center
 	justify-between
