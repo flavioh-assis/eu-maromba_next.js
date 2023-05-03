@@ -7,13 +7,14 @@ import {
 	useReorderWorkoutSheets,
 } from '@/workout-sheet/workout-sheet.service';
 import { useEffect, useState } from 'react';
-import { Page, Title } from '@/styles/styled';
+import { FlexRow, Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import {
 	ReorderWorkoutSheetDto,
 	WorkoutSheet,
 } from '@/workout-sheet/workout-sheet.types';
 import { toast } from 'react-toastify';
+import { Button } from '@/shared/components/Button/Button';
 
 export const ListWorkoutSheet = () => {
 	const dispatch = useAppDispatch();
@@ -117,28 +118,30 @@ export const ListWorkoutSheet = () => {
 									))}
 									{provided.placeholder}
 
-									{isDraggable ? (
-										<button
-											onClick={handleSave}
-											className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
-										>
-											Salvar
-										</button>
-									) : (
-										<button
-											onClick={toggleModal}
-											className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
-										>
-											Criar Ficha
-										</button>
-									)}
+									<FlexRow className='justify-center gap-4'>
+										{isDraggable ? (
+											<Button
+												onClick={handleSave}
+												name={'Salvar'}
+												type='primary'
+												icon='save'
+											/>
+										) : (
+											<Button
+												onClick={toggleModal}
+												name={'Nova Ficha'}
+												type='primary'
+												icon='add'
+											/>
+										)}
 
-									<button
-										onClick={isDraggable ? handleCancel : handleStartDragging}
-										className='px-4 py-2 my-3 text-black transition duration-300 bg-white rounded-md shadow-md hover:bg-gray-200'
-									>
-										{isDraggable ? 'Cancelar' : 'Reordenar'}
-									</button>
+										<Button
+											name={isDraggable ? 'Cancelar' : 'Reordenar'}
+											onClick={isDraggable ? handleCancel : handleStartDragging}
+											type='default'
+											icon={isDraggable ? 'cancel' : 'reorder'}
+										/>
+									</FlexRow>
 								</div>
 							)}
 						</Droppable>
