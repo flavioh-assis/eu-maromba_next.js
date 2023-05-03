@@ -23,9 +23,10 @@ export const ListWorkoutSheet = () => {
 	const { mutate } = useReorderWorkoutSheets();
 
 	const [workoutSheets, setWorkoutSheets] = useState<WorkoutSheet[]>([]);
+	const [workoutSheetsCopy, setWorkoutSheetsCopy] = useState<WorkoutSheet[]>([]);
 
 	const [openModal, setOpenModal] = useState(false);
-	const [isDraggable, setIsDraggable] = useState(!true);
+	const [isDraggable, setIsDraggable] = useState(false);
 
 	const toggleModal = () => setOpenModal(open => !open);
 
@@ -74,6 +75,16 @@ export const ListWorkoutSheet = () => {
 		});
 	};
 
+	const handleStartDragging = () => {
+		setWorkoutSheetsCopy(workoutSheets);
+		toggleIsDraggable();
+	};
+
+	const handleCancel = () => {
+		setWorkoutSheets(workoutSheetsCopy);
+		toggleIsDraggable();
+	};
+
 	useEffect(() => {
 		apiData && dispatch(storeWS.populate(apiData));
 	}, [apiData]);
@@ -88,10 +99,7 @@ export const ListWorkoutSheet = () => {
 
 			{workoutSheets?.length ? (
 				<DragDropContext onDragEnd={onDragEnd}>
-					<Droppable
-						droppableId='droppable'
-						isDropDisabled={!isDraggable}
-					>
+					<Droppable droppableId='droppable'>
 						{(provided, _) => (
 							<div
 								className='flex flex-col items-center w-full'
@@ -127,8 +135,8 @@ export const ListWorkoutSheet = () => {
 								)}
 
 								<button
-									onClick={toggleIsDraggable}
-									className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+									onClick={isDraggable ? handleCancel : handleStartDragging}
+									className='px-4 py-2 my-3 text-black transition duration-300 bg-white rounded-md shadow-md hover:bg-gray-200'
 								>
 									{isDraggable ? 'Cancelar' : 'Reordenar'}
 								</button>
