@@ -47,7 +47,7 @@ export const CardWorkoutSheet = ({
 				key={id}
 				draggableId={String(id)}
 				index={cardIndex}
-				isDragDisabled={false}
+				isDragDisabled={!isDraggable}
 			>
 				{(provided, _) => (
 					<Card
@@ -56,9 +56,10 @@ export const CardWorkoutSheet = ({
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
 					>
-						<button
+						<div
 							title='Visualizar os treinos'
 							onClick={!isDraggable ? handleListTrainings : () => {}}
+							role={!isDraggable ? 'button' : 'banner'}
 							className='flex w-11/12 sm:w-10/12 items-center min-h-[4rem] sm:min-h-[8rem] text-left'
 						>
 							<FlexRow className='w-3/5'>
@@ -68,7 +69,7 @@ export const CardWorkoutSheet = ({
 							<TrainingAmount className='w-2/5 '>
 								{trainingCount} {trainingCount != 1 ? 'treinos' : 'treino'}
 							</TrainingAmount>
-						</button>
+						</div>
 
 						<div className='flex items-center justify-end w-1/12 gap-1 sm:w-fit sm:gap-2'>
 							{isDraggable ? (
