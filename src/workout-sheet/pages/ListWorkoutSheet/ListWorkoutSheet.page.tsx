@@ -32,9 +32,7 @@ export const ListWorkoutSheet = () => {
 
 	const toggleIsDraggable = () => setIsDraggable(state => !state);
 
-	const onDragEnd = (result: DropResult) => {
-		const { destination, source } = result;
-
+	const onDragEnd = ({ destination, source }: DropResult) => {
 		if (!destination) return;
 		if (source.index === destination.index) return;
 
@@ -90,68 +88,70 @@ export const ListWorkoutSheet = () => {
 	}, [apiData]);
 
 	useEffect(() => {
-		setWorkoutSheets(storeWorkoutSheets);
+		storeWorkoutSheets.length && setWorkoutSheets(storeWorkoutSheets);
 	}, [storeWorkoutSheets]);
 
 	return (
-		<Page>
-			<Title>Minhas Fichas</Title>
+		<>
+			<Page>
+				<Title>Minhas Fichas</Title>
 
-			{workoutSheets?.length ? (
-				<DragDropContext onDragEnd={onDragEnd}>
-					<Droppable droppableId='droppable'>
-						{(provided, _) => (
-							<div
-								className='flex flex-col items-center w-full'
-								ref={provided.innerRef}
-								{...provided.droppableProps}
-							>
-								{workoutSheets?.map((sheet, index) => (
-									<CardWorkoutSheet
-										key={sheet.id}
-										id={sheet.id}
-										cardIndex={index}
-										name={sheet.name}
-										trainingCount={sheet.trainingCount}
-										isDraggable={isDraggable}
-									/>
-								))}
-								{provided.placeholder}
-
-								{isDraggable ? (
-									<button
-										onClick={handleSave}
-										className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
-									>
-										Salvar
-									</button>
-								) : (
-									<button
-										onClick={toggleModal}
-										className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
-									>
-										Criar Ficha
-									</button>
-								)}
-
-								<button
-									onClick={isDraggable ? handleCancel : handleStartDragging}
-									className='px-4 py-2 my-3 text-black transition duration-300 bg-white rounded-md shadow-md hover:bg-gray-200'
+				{workoutSheets?.length ? (
+					<DragDropContext onDragEnd={onDragEnd}>
+						<Droppable droppableId='droppable'>
+							{(provided, _) => (
+								<div
+									className='flex flex-col items-center w-full'
+									ref={provided.innerRef}
+									{...provided.droppableProps}
 								>
-									{isDraggable ? 'Cancelar' : 'Reordenar'}
-								</button>
-							</div>
-						)}
-					</Droppable>
-				</DragDropContext>
-			) : (
-				<p>Você não possui ficha :(</p>
-			)}
+									{workoutSheets?.map((sheet, index) => (
+										<CardWorkoutSheet
+											key={sheet.id}
+											id={sheet.id}
+											cardIndex={index}
+											name={sheet.name}
+											trainingCount={sheet.trainingCount}
+											isDraggable={isDraggable}
+										/>
+									))}
+									{provided.placeholder}
+
+									{isDraggable ? (
+										<button
+											onClick={handleSave}
+											className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+										>
+											Salvar
+										</button>
+									) : (
+										<button
+											onClick={toggleModal}
+											className='px-4 py-2 my-3 text-white transition duration-300 bg-blue-600 rounded-md shadow-md hover:bg-blue-500'
+										>
+											Criar Ficha
+										</button>
+									)}
+
+									<button
+										onClick={isDraggable ? handleCancel : handleStartDragging}
+										className='px-4 py-2 my-3 text-black transition duration-300 bg-white rounded-md shadow-md hover:bg-gray-200'
+									>
+										{isDraggable ? 'Cancelar' : 'Reordenar'}
+									</button>
+								</div>
+							)}
+						</Droppable>
+					</DragDropContext>
+				) : (
+					<p>Você não possui ficha :(</p>
+				)}
+			</Page>
 
 			<ModalCreate
 				open={openModal}
 				toggleModal={toggleModal}
 			/>
-		</Page>
+		</>
 	);
 };
