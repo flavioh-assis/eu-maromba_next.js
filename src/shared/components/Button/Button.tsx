@@ -46,7 +46,7 @@ export const Button = ({
 		save: <IoSaveOutline className={`text-lg ${name ? 'mr-2' : ''}`} />,
 		cancel: <CgClose className={`text-xl ${name ? 'mr-1' : ''}`} />,
 		reorder: <TbMenuOrder className={`text-xl ${name ? 'mr-2' : ''}`} />,
-		add: <CgClose className={`text-xl rotate-45 ${name ? 'mr-1' : ''}`} />,
+		add: <CgClose className={`text-xl rotate-45 ${name ? 'mr-2' : ''}`} />,
 	};
 
 	return (

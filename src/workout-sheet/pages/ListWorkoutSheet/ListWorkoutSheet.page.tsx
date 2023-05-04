@@ -101,8 +101,7 @@ export const ListWorkoutSheet = () => {
 					<DragDropContext onDragEnd={onDragEnd}>
 						<Droppable droppableId='droppable'>
 							{(provided, _) => (
-								<div
-									className='flex flex-col items-center w-full'
+								<FlexCol
 									ref={provided.innerRef}
 									{...provided.droppableProps}
 								>
@@ -124,14 +123,14 @@ export const ListWorkoutSheet = () => {
 										{isDraggable ? (
 											<Button
 												onClick={handleSave}
-												name={'Salvar'}
+												name='Salvar'
 												type='primary'
 												icon='save'
 											/>
 										) : (
 											<Button
 												onClick={toggleModal}
-												name={'Nova Ficha'}
+												name='Nova Ficha'
 												type='primary'
 												icon='add'
 											/>
@@ -144,7 +143,7 @@ export const ListWorkoutSheet = () => {
 											icon={isDraggable ? 'cancel' : 'reorder'}
 										/>
 									</FlexRow>
-								</div>
+								</FlexCol>
 							)}
 						</Droppable>
 					</DragDropContext>
