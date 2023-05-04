@@ -7,7 +7,7 @@ import {
 	useReorderWorkoutSheets,
 } from '@/workout-sheet/workout-sheet.service';
 import { useEffect, useState } from 'react';
-import { FlexRow, Page, Title } from '@/styles/styled';
+import { FlexCol, FlexRow, Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import {
 	ReorderWorkoutSheetDto,
@@ -106,19 +106,21 @@ export const ListWorkoutSheet = () => {
 									ref={provided.innerRef}
 									{...provided.droppableProps}
 								>
-									{workoutSheets?.map((sheet, index) => (
-										<CardWorkoutSheet
-											key={sheet.id}
-											id={sheet.id}
-											cardIndex={index}
-											name={sheet.name}
-											trainingCount={sheet.trainingCount}
-											isDraggable={isDraggable}
-										/>
-									))}
+									<FlexCol>
+										{workoutSheets?.map((sheet, index) => (
+											<CardWorkoutSheet
+												key={sheet.id}
+												id={sheet.id}
+												cardIndex={index}
+												name={sheet.name}
+												trainingCount={sheet.trainingCount}
+												isDraggable={isDraggable}
+											/>
+										))}
+									</FlexCol>
 									{provided.placeholder}
 
-									<FlexRow className='justify-center gap-4'>
+									<FlexRow className='justify-center gap-4 mt-4'>
 										{isDraggable ? (
 											<Button
 												onClick={handleSave}
