@@ -1,11 +1,10 @@
 import { TbMenuOrder } from 'react-icons/tb';
-import { IoSaveOutline, IoClose } from 'react-icons/io5';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { IoSaveOutline } from 'react-icons/io5';
 import { CgClose } from 'react-icons/cg';
 
 type Props = {
 	onClick: VoidFunction;
-	name: string;
+	name?: string;
 	disabled?: boolean;
 	icon?: 'save' | 'cancel' | 'reorder' | 'add';
 	type?: 'primary' | 'default' | 'text';
@@ -19,7 +18,7 @@ export const Button = ({
 	type = 'default',
 }: Props) => {
 	const defaultClass =
-		'flex items-center px-4 py-2 min-w-[8rem] transition duration-300 rounded-md border justify-center text-md';
+		'flex items-center px-4 py-2 w-full sm:w-fit transition duration-300 rounded-md border justify-center text-md';
 
 	const disabledClass = 'text-black text-opacity-25 ';
 
@@ -41,13 +40,13 @@ export const Button = ({
 
 	const buttonClass = `${defaultClass} ${
 		disabled ? classByType.disabled[type] : classByType.enabled[type]
-	}`;
+	} ${name ? 'min-w-[8rem]' : ''}`;
 
 	const iconComponent = {
-		save: <IoSaveOutline className='mr-2 text-lg' />,
-		cancel: <CgClose className='mr-1 text-xl' />,
-		reorder: <TbMenuOrder className='mr-2 text-xl' />,
-		add: <AiOutlinePlus className='mr-1 text-xl' />,
+		save: <IoSaveOutline className={`text-lg ${name ? 'mr-2' : ''}`} />,
+		cancel: <CgClose className={`text-xl ${name ? 'mr-1' : ''}`} />,
+		reorder: <TbMenuOrder className={`text-xl ${name ? 'mr-2' : ''}`} />,
+		add: <CgClose className={`text-xl rotate-45 ${name ? 'mr-1' : ''}`} />,
 	};
 
 	return (
