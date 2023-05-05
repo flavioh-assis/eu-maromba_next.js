@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { WorkoutSheet } from '@/workout-sheet/workout-sheet.types';
+import { Routine } from '@/routine/routine.types';
 import { add, populate, remove, reorder, update } from './actions';
 
-const initialState: WorkoutSheet[] = [];
+const initialState: Routine[] = [];
 
-export const workoutSheetReducer = createReducer(initialState, builder => {
+export const routineReducer = createReducer(initialState, builder => {
 	builder
 		.addCase(add, (state, { payload }) => {
 			return [...state, payload];

@@ -3,7 +3,7 @@ import gifAbs from './abs.gif';
 
 type TrainingProps = {
 	id: number;
-	workoutSheetId: number;
+	routineId: number;
 	exerciseId: number;
 	exerciseName: string;
 	obs: string;
@@ -15,7 +15,7 @@ type TrainingProps = {
 
 export const CardTraining = ({
 	id,
-	workoutSheetId,
+	routineId,
 	exerciseId,
 	exerciseName,
 	obs,

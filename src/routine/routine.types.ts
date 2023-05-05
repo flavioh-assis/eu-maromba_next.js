@@ -1,21 +1,21 @@
-export type WorkoutSheet = {
+export type Routine = {
 	id: number;
 	name: string;
 	position: number;
 	trainingCount: number;
 };
 
-export type UpdateWorkoutSheetDto = {
+export type UpdateRoutineDto = {
 	id: number;
 	name: string;
 	position?: number;
 };
 
-export type CreateWorkoutSheetDto = {
+export type CreateRoutineDto = {
 	name: string;
 };
 
-export type ReorderWorkoutSheetDto = {
+export type ReorderRoutineDto = {
 	id: number;
 	position: number;
 };

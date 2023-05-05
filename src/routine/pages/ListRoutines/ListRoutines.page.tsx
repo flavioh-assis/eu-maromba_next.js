@@ -1,30 +1,24 @@
-import * as storeWS from '@/store/workout-sheet/actions';
+import * as storeWS from '@/store/routine/actions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { CardWorkoutSheet } from '@/workout-sheet/components';
-import { ModalCreate } from '@/workout-sheet/components';
-import {
-	useGetAllWorkoutSheets,
-	useReorderWorkoutSheets,
-} from '@/workout-sheet/workout-sheet.service';
+import { CardRoutine } from '@/routine/components';
+import { ModalCreate } from '@/routine/components';
 import { useEffect, useState } from 'react';
 import { FlexCol, FlexRow, Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
-import {
-	ReorderWorkoutSheetDto,
-	WorkoutSheet,
-} from '@/workout-sheet/workout-sheet.types';
 import { toast } from 'react-toastify';
 import { Button } from '@/shared/components/Button/Button';
+import { useGetAllRoutines, useReorderRoutines } from '@/routine/routine.service';
+import { ReorderRoutineDto, Routine } from '@/routine/routine.types';
 
-export const ListWorkoutSheet = () => {
+export const ListRoutines = () => {
 	const dispatch = useAppDispatch();
-	const storeWorkoutSheets = useAppSelector(state => state.workoutSheet);
+	const storeRoutines = useAppSelector(state => state.routine);
 
-	const { data: apiData } = useGetAllWorkoutSheets();
-	const { mutate } = useReorderWorkoutSheets();
+	const { data: apiData } = useGetAllRoutines();
+	const { mutate } = useReorderRoutines();
 
-	const [workoutSheets, setWorkoutSheets] = useState<WorkoutSheet[]>([]);
-	const [workoutSheetsCopy, setWorkoutSheetsCopy] = useState<WorkoutSheet[]>([]);
+	const [routines, setRoutines] = useState<Routine[]>([]);
+	const [routinesCopy, setRoutinesCopy] = useState<Routine[]>([]);
 
 	const [openModal, setOpenModal] = useState(false);
 	const [isDraggable, setIsDraggable] = useState(false);
@@ -37,12 +31,12 @@ export const ListWorkoutSheet = () => {
 		if (!destination) return;
 		if (source.index === destination.index) return;
 
-		const items = reorder(workoutSheets, source.index, destination.index);
+		const items = reorder(routines, source.index, destination.index);
 
-		setWorkoutSheets(items);
+		setRoutines(items);
 	};
 
-	const reorder = (list: WorkoutSheet[], startIndex: number, endIndex: number) => {
+	const reorder = (list: Routine[], startIndex: number, endIndex: number) => {
 		const result = [...list];
 		const [removed] = result.splice(startIndex, 1);
 		result.splice(endIndex, 0, removed);
@@ -50,17 +44,17 @@ export const ListWorkoutSheet = () => {
 		return result;
 	};
 
-	const updatePositions = (list: WorkoutSheet[]) => {
+	const updatePositions = (list: Routine[]) => {
 		return list.map((sheet, idx) => {
 			return {
 				...sheet,
 				position: idx,
-			} as ReorderWorkoutSheetDto;
+			} as ReorderRoutineDto;
 		});
 	};
 
 	const handleSave = () => {
-		const orderedList = updatePositions(workoutSheets);
+		const orderedList = updatePositions(routines);
 
 		mutate(orderedList, {
 			onError: () => {
@@ -75,12 +69,12 @@ export const ListWorkoutSheet = () => {
 	};
 
 	const handleStartDragging = () => {
-		setWorkoutSheetsCopy(workoutSheets);
+		setRoutinesCopy(routines);
 		toggleIsDraggable();
 	};
 
 	const handleCancel = () => {
-		setWorkoutSheets(workoutSheetsCopy);
+		setRoutines(routinesCopy);
 		toggleIsDraggable();
 	};
 
@@ -89,15 +83,15 @@ export const ListWorkoutSheet = () => {
 	}, [apiData]);
 
 	useEffect(() => {
-		storeWorkoutSheets.length && setWorkoutSheets(storeWorkoutSheets);
-	}, [storeWorkoutSheets]);
+		storeRoutines.length && setRoutines(storeRoutines);
+	}, [storeRoutines]);
 
 	return (
 		<>
 			<Page>
 				<Title>Minhas Fichas</Title>
 
-				{workoutSheets?.length ? (
+				{routines?.length ? (
 					<DragDropContext onDragEnd={onDragEnd}>
 						<Droppable droppableId='droppable'>
 							{(provided, _) => (
@@ -106,8 +100,8 @@ export const ListWorkoutSheet = () => {
 									{...provided.droppableProps}
 								>
 									<FlexCol>
-										{workoutSheets?.map((sheet, index) => (
-											<CardWorkoutSheet
+										{routines?.map((sheet, index) => (
+											<CardRoutine
 												key={sheet.id}
 												id={sheet.id}
 												cardIndex={index}

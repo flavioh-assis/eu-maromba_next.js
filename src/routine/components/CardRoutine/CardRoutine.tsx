@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HiPencil } from 'react-icons/hi';
 import { IoTrash } from 'react-icons/io5';
 import { useRouter } from 'next/router';
-import { ModalDelete, ModalUpdate } from '@/workout-sheet/components';
+import { ModalDelete, ModalUpdate } from '@/routine/components';
 import { Card, CardTitle, FlexRow, TrainingAmount } from '@/styles/styled';
 import { MdDragIndicator } from 'react-icons/md';
 import { Draggable } from 'react-beautiful-dnd';
@@ -15,7 +15,7 @@ type Props = {
 	isDraggable: boolean;
 };
 
-export const CardWorkoutSheet = ({
+export const CardRoutine = ({
 	id,
 	name,
 	trainingCount,
@@ -31,7 +31,7 @@ export const CardWorkoutSheet = ({
 		router.push(
 			{
 				pathname: '/trainings',
-				query: { workoutSheetId: id },
+				query: { routineId: id },
 			},
 			'/trainings'
 		);
@@ -100,14 +100,14 @@ export const CardWorkoutSheet = ({
 				id={id}
 				open={openModalDelete}
 				trainingCount={trainingCount}
-				workoutSheetName={name}
+				routineTitle={name}
 				toggleModal={toggleModalDelete}
 			/>
 
 			<ModalUpdate
 				id={id}
 				open={openModalUpdate}
-				currentTitle={name}
+				currentRoutineTitle={name}
 				toggleModal={toggleModalUpdate}
 			/>
 		</>

@@ -1,4 +1,4 @@
-export { CardWorkoutSheet } from './CardWorkoutSheet/CardWorkoutSheet';
+export { CardRoutine } from './CardRoutine/CardRoutine';
 export { Modal } from './Modal/Modal';
 export { ModalCreate } from './ModalCreate/ModalCreate';
 export { ModalUpdate } from './ModalUpdate/ModalUpdate';

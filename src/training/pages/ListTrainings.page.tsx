@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
-import { useGetTrainingsFromSheet } from '../training.service';
+import { useGetTrainingsFromRoutine } from '../training.service';
 import { CardTraining } from '../components';
 
 export const ListTrainings = () => {
 	const router = useRouter();
 	const query = router.query;
-	const workoutSheetId = Number(query.workoutSheetId);
+	const routineId = Number(query.routineId);
 
-	if (workoutSheetId) {
-		const { data } = useGetTrainingsFromSheet(workoutSheetId);
+	if (routineId) {
+		const { data } = useGetTrainingsFromRoutine(routineId);
 		const trainings = data || [];
 
 		return (
@@ -21,7 +21,7 @@ export const ListTrainings = () => {
 							<CardTraining
 								key={t.id}
 								id={t.id}
-								workoutSheetId={t.workoutSheet.id}
+								routineId={t.workoutSheet.id}
 								exerciseId={t.exercise.id}
 								exerciseName={t.exercise.name}
 								sets={t.sets}

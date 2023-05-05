@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useCreateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
+import { useCreateRoutine } from '@/routine/routine.service';
 import { toast } from 'react-toastify';
-import { InputModal, Modal } from '@/workout-sheet/components';
+import { InputModal, Modal } from '@/routine/components';
 import { useAppDispatch } from '@/store/hooks';
-import { add } from '@/store/workout-sheet/actions';
-import { CreateWorkoutSheetDto } from '@/workout-sheet/workout-sheet.types';
+import { add } from '@/store/routine/actions';
+import { CreateRoutineDto } from '@/routine/routine.types';
 
 type Props = {
 	open: boolean;
@@ -14,7 +14,7 @@ type Props = {
 export const ModalCreate = ({ open, toggleModal }: Props) => {
 	const dispatch = useAppDispatch();
 
-	const { mutate } = useCreateWorkoutSheet();
+	const { mutate } = useCreateRoutine();
 
 	const [title, setTitle] = useState('');
 
@@ -30,7 +30,7 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 
 		const dto = {
 			name: title,
-		} as CreateWorkoutSheetDto;
+		} as CreateRoutineDto;
 
 		mutate(dto, {
 			onError: () => {

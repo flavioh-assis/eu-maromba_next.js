@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { workoutSheetReducer } from './workout-sheet/reducer';
+import { routineReducer } from './routine/reducer';
 
 export const store = configureStore({
 	reducer: {
-		workoutSheet: workoutSheetReducer,
+		routine: routineReducer,
 	},
 });
 

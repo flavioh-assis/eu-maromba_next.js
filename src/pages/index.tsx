@@ -1,6 +1,6 @@
-import { ListWorkoutSheet } from '@/workout-sheet/pages/ListWorkoutSheet/ListWorkoutSheet.page';
+import { ListRoutines } from '@/routine/pages/ListRoutines/ListRoutines.page';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
-	return <ListWorkoutSheet />;
+	return <ListRoutines />;
 }

@@ -1,14 +1,14 @@
-import { useDeleteWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
-import { Modal } from '@/workout-sheet/components';
+import { useDeleteRoutine } from '@/routine/routine.service';
+import { Modal } from '@/routine/components';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
-import * as storeWS from '@/store/workout-sheet/actions';
+import * as storeWS from '@/store/routine/actions';
 
 type Props = {
 	id: number;
 	open: boolean;
 	trainingCount: number;
-	workoutSheetName: string;
+	routineTitle: string;
 	toggleModal: VoidFunction;
 };
 
@@ -16,12 +16,12 @@ export const ModalDelete = ({
 	id,
 	open,
 	trainingCount,
-	workoutSheetName,
+	routineTitle,
 	toggleModal,
 }: Props) => {
 	const dispatch = useAppDispatch();
 
-	const { mutate } = useDeleteWorkoutSheet();
+	const { mutate } = useDeleteRoutine();
 
 	const handleDelete = () => {
 		mutate(id, {
@@ -57,7 +57,7 @@ export const ModalDelete = ({
 			<div className='flex flex-col'>
 				<p>
 					Deseja remover a ficha{' '}
-					<strong className='whitespace-nowrap'>{workoutSheetName}</strong>?
+					<strong className='whitespace-nowrap'>{routineTitle}</strong>?
 				</p>
 				<p>{trainingText()}</p>
 				<p>Essa ação não poderá ser desfeita.</p>

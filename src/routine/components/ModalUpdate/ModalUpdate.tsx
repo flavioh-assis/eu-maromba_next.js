@@ -1,24 +1,24 @@
-import { useUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
-import { InputModal, Modal } from '@/workout-sheet/components';
+import { useUpdateRoutine } from '@/routine/routine.service';
+import { InputModal, Modal } from '@/routine/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
-import * as store from '@/store/workout-sheet/actions';
-import { UpdateWorkoutSheetDto } from '@/workout-sheet/workout-sheet.types';
+import * as store from '@/store/routine/actions';
+import { UpdateRoutineDto } from '@/routine/routine.types';
 
 type Props = {
 	id: number;
 	open: boolean;
-	currentTitle: string;
+	currentRoutineTitle: string;
 	toggleModal: VoidFunction;
 };
 
-export const ModalUpdate = ({ id, open, currentTitle, toggleModal }: Props) => {
+export const ModalUpdate = ({ id, open, currentRoutineTitle, toggleModal }: Props) => {
 	const dispatch = useAppDispatch();
 
-	const { mutate } = useUpdateWorkoutSheet();
+	const { mutate } = useUpdateRoutine();
 
-	const [title, setTitle] = useState(currentTitle);
+	const [title, setTitle] = useState(currentRoutineTitle);
 
 	const handleSetTitle = (newTitle: string) => {
 		setTitle(newTitle);
@@ -33,7 +33,7 @@ export const ModalUpdate = ({ id, open, currentTitle, toggleModal }: Props) => {
 		const dto = {
 			id,
 			name: title,
-		} as UpdateWorkoutSheetDto;
+		} as UpdateRoutineDto;
 
 		mutate(dto, {
 			onError: () => {
