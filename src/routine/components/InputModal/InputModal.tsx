@@ -1,11 +1,11 @@
 import { Input } from '@/shared/components';
 
 type Props = {
-	title: string;
+	routineTitle: string;
 	setTitle: (newTitle: string) => void;
 };
 
-export const InputModal = ({ title, setTitle }: Props) => {
+export const InputModal = ({ routineTitle, setTitle }: Props) => {
 	return (
 		<div>
 			<label
@@ -16,8 +16,8 @@ export const InputModal = ({ title, setTitle }: Props) => {
 			</label>
 
 			<Input
-				title={title}
-				setTitle={setTitle}
+				value={routineTitle}
+				setValue={setTitle}
 			/>
 		</div>
 	);

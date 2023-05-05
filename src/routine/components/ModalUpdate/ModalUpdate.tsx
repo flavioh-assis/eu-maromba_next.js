@@ -18,21 +18,21 @@ export const ModalUpdate = ({ id, open, currentRoutineTitle, toggleModal }: Prop
 
 	const { mutate } = useUpdateRoutine();
 
-	const [title, setTitle] = useState(currentRoutineTitle);
+	const [routineTitle, setRoutineTitle] = useState(currentRoutineTitle);
 
 	const handleSetTitle = (newTitle: string) => {
-		setTitle(newTitle);
+		setRoutineTitle(newTitle);
 	};
 
 	const handleUpdate = () => {
-		if (title === '') {
+		if (routineTitle === '') {
 			toast.error('O texto não pode ser vazio.');
 			return;
 		}
 
 		const dto = {
 			id,
-			name: title,
+			name: routineTitle,
 		} as UpdateRoutineDto;
 
 		mutate(dto, {
@@ -47,16 +47,21 @@ export const ModalUpdate = ({ id, open, currentRoutineTitle, toggleModal }: Prop
 		});
 	};
 
+	const handleClose = () => {
+		setRoutineTitle(currentRoutineTitle);
+		toggleModal();
+	};
+
 	return (
 		<Modal
 			open={open}
 			title='Alterar ficha'
 			handleConfirm={handleUpdate}
-			toggleModal={toggleModal}
+			toggleModal={handleClose}
 		>
 			<InputModal
 				setTitle={handleSetTitle}
-				title={title}
+				routineTitle={routineTitle}
 			/>
 		</Modal>
 	);

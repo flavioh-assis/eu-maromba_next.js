@@ -58,7 +58,7 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 		>
 			<InputModal
 				setTitle={handleSetTitle}
-				title={title}
+				routineTitle={title}
 			/>
 		</Modal>
 	);
