@@ -8,10 +8,7 @@ type Props = {
 export const InputModal = ({ routineTitle, setTitle }: Props) => {
 	return (
 		<div>
-			<label
-				className='block mb-2 text-sm font-bold text-gray-700'
-				htmlFor='name'
-			>
+			<label className='block mb-2 text-sm font-bold text-gray-700'>
 				Título da ficha
 			</label>
 
