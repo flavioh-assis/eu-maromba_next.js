@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { CardRoutine } from '@/features/routine/components';
 import { ModalCreate } from '@/features/routine/components';
 import { useEffect, useState } from 'react';
-import { Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import { toast } from 'react-toastify';
 import { Button } from '@/shared/components/Button/Button';
@@ -91,8 +90,8 @@ export const ListRoutines = () => {
 
 	return (
 		<>
-			<Page>
-				<Title>Minhas Fichas</Title>
+			<main className='page'>
+				<h1 className='page-title'>Minhas Fichas</h1>
 
 				{routines?.length ? (
 					<DragDropContext onDragEnd={onDragEnd}>
@@ -148,7 +147,7 @@ export const ListRoutines = () => {
 				) : (
 					<p>Você não possui ficha :(</p>
 				)}
-			</Page>
+			</main>
 
 			<ModalCreate
 				open={openModal}

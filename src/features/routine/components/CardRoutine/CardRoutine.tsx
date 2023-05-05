@@ -3,7 +3,6 @@ import { HiPencil } from 'react-icons/hi';
 import { IoTrash } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import { ModalDelete, ModalUpdate } from '@/features/routine/components';
-import { Card, CardTitle } from '@/styles/styled';
 import { MdDragIndicator } from 'react-icons/md';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -50,11 +49,11 @@ export const CardRoutine = ({
 				isDragDisabled={!isDraggable}
 			>
 				{(provided, _) => (
-					<Card
-						$isDraggable={true}
+					<div
 						ref={provided.innerRef}
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
+						className='mb-2 routine-card custom-flex-row sm:mb-3'
 					>
 						<div
 							title='Visualizar os treinos'
@@ -63,7 +62,7 @@ export const CardRoutine = ({
 							className='flex w-11/12 sm:w-10/12 items-center min-h-[4rem] sm:min-h-[8rem] text-left'
 						>
 							<span className='flex flex-row items-center w-3/5'>
-								<CardTitle>{name}</CardTitle>
+								<span className='text-sm font-semibold sm:text-xl'>{name}</span>
 							</span>
 
 							<span className='w-2/5 text-sm sm:text-xl '>
@@ -92,7 +91,7 @@ export const CardRoutine = ({
 								</>
 							)}
 						</div>
-					</Card>
+					</div>
 				)}
 			</Draggable>
 
