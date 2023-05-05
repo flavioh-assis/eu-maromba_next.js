@@ -1,34 +1,39 @@
 import { useUpdateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
-import { Modal } from '@/workout-sheet/components';
+import { InputModal, Modal } from '@/workout-sheet/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
 import * as store from '@/store/workout-sheet/actions';
+import { UpdateWorkoutSheetDto } from '@/workout-sheet/workout-sheet.types';
 
 type Props = {
 	id: number;
 	open: boolean;
-	currentName: string;
+	currentTitle: string;
 	toggleModal: VoidFunction;
 };
 
-export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
+export const ModalUpdate = ({ id, open, currentTitle, toggleModal }: Props) => {
 	const dispatch = useAppDispatch();
 
 	const { mutate } = useUpdateWorkoutSheet();
 
-	const [name, setName] = useState(currentName);
+	const [title, setTitle] = useState(currentTitle);
+
+	const handleSetTitle = (newTitle: string) => {
+		setTitle(newTitle);
+	};
 
 	const handleUpdate = () => {
-		if (name === '') {
+		if (title === '') {
 			toast.error('O texto não pode ser vazio.');
 			return;
 		}
 
 		const dto = {
 			id,
-			name,
-		};
+			name: title,
+		} as UpdateWorkoutSheetDto;
 
 		mutate(dto, {
 			onError: () => {
@@ -49,24 +54,10 @@ export const ModalUpdate = ({ id, open, currentName, toggleModal }: Props) => {
 			handleConfirm={handleUpdate}
 			toggleModal={toggleModal}
 		>
-			<div>
-				<label
-					className='block mb-2 text-sm font-bold text-gray-700'
-					htmlFor='name'
-				>
-					Nome da ficha
-				</label>
-
-				<input
-					id='name'
-					type='text'
-					placeholder='Inferiores'
-					value={name}
-					onChange={t => setName(t.target.value)}
-					maxLength={30}
-					className='w-full p-3 leading-tight text-gray-700 border rounded shadow focus:outline-none'
-				/>
-			</div>
+			<InputModal
+				setTitle={handleSetTitle}
+				title={title}
+			/>
 		</Modal>
 	);
 };

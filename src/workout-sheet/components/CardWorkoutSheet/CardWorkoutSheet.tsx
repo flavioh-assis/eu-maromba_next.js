@@ -77,7 +77,7 @@ export const CardWorkoutSheet = ({
 							) : (
 								<>
 									<button
-										title='Editar nome da ficha'
+										title='Editar título da ficha'
 										onClick={toggleModalUpdate}
 									>
 										<HiPencil className='text-xl transition duration-300 ease-in-out sm:text-3xl hover:scale-125' />
@@ -107,7 +107,7 @@ export const CardWorkoutSheet = ({
 			<ModalUpdate
 				id={id}
 				open={openModalUpdate}
-				currentName={name}
+				currentTitle={name}
 				toggleModal={toggleModalUpdate}
 			/>
 		</>

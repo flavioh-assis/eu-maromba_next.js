@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useCreateWorkoutSheet } from '@/workout-sheet/workout-sheet.service';
 import { toast } from 'react-toastify';
-import { Modal } from '@/workout-sheet/components';
+import { InputModal, Modal } from '@/workout-sheet/components';
 import { useAppDispatch } from '@/store/hooks';
 import { add } from '@/store/workout-sheet/actions';
+import { CreateWorkoutSheetDto } from '@/workout-sheet/workout-sheet.types';
 
 type Props = {
 	open: boolean;
@@ -15,17 +16,21 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 
 	const { mutate } = useCreateWorkoutSheet();
 
-	const [name, setName] = useState('');
+	const [title, setTitle] = useState('');
+
+	const handleSetTitle = (newTitle: string) => {
+		setTitle(newTitle);
+	};
 
 	const handleCreate = () => {
-		if (name === '') {
+		if (title === '') {
 			toast.error('O texto não pode ser vazio.');
 			return;
 		}
 
 		const dto = {
-			name,
-		};
+			name: title,
+		} as CreateWorkoutSheetDto;
 
 		mutate(dto, {
 			onError: () => {
@@ -40,7 +45,7 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 	};
 
 	const handleClose = () => {
-		setName('');
+		setTitle('');
 		toggleModal();
 	};
 
@@ -51,24 +56,10 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 			handleConfirm={handleCreate}
 			toggleModal={handleClose}
 		>
-			<div>
-				<label
-					className='block mb-2 text-sm font-bold text-gray-700'
-					htmlFor='name'
-				>
-					Nome da ficha
-				</label>
-
-				<input
-					id='name'
-					type='text'
-					placeholder='Inferiores'
-					value={name}
-					onChange={t => setName(t.target.value)}
-					maxLength={30}
-					className='w-full p-3 leading-tight text-gray-700 border rounded shadow focus:outline-none'
-				/>
-			</div>
+			<InputModal
+				setTitle={handleSetTitle}
+				title={title}
+			/>
 		</Modal>
 	);
 };

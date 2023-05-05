@@ -112,7 +112,7 @@ export const ListWorkoutSheet = () => {
 												id={sheet.id}
 												cardIndex={index}
 												name={sheet.name}
-												trainingCount={sheet.trainingCount}
+												trainingCount={sheet.trainingCount || 0}
 												isDraggable={isDraggable}
 											/>
 										))}
