@@ -23,3 +23,11 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+.custom-flex-col {
+	@apply flex flex-col items-center w-full;
+}
+
+.custom-flex-row {
+	@apply flex flex-row items-center w-full;
+}

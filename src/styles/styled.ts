@@ -44,14 +44,3 @@ export const TrainingAmount = ws.span`
 export const CardTitle = ws(TrainingAmount)`
 	font-semibold
 `;
-
-export const FlexRow = ws.div`
-	flex
-	flex-row
-	items-center
-	w-full
-`;
-
-export const FlexCol = ws(FlexRow)`
-	flex-col
-`;
