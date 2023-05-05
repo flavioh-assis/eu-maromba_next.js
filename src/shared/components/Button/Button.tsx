@@ -1,4 +1,4 @@
-import { TbMenuOrder } from 'react-icons/tb';
+import { TbMenuOrder, TbCheck } from 'react-icons/tb';
 import { IoSaveOutline } from 'react-icons/io5';
 import { CgClose } from 'react-icons/cg';
 
@@ -6,7 +6,7 @@ type Props = {
 	onClick: VoidFunction;
 	name?: string;
 	disabled?: boolean;
-	icon?: 'save' | 'cancel' | 'reorder' | 'add';
+	icon?: 'save' | 'cancel' | 'reorder' | 'add' | 'confirm';
 	type?: 'primary' | 'default' | 'text';
 };
 
@@ -47,6 +47,7 @@ export const Button = ({
 		cancel: <CgClose className={`text-xl ${name ? 'mr-1' : ''}`} />,
 		reorder: <TbMenuOrder className={`text-xl ${name ? 'mr-2' : ''}`} />,
 		add: <CgClose className={`text-xl rotate-45 ${name ? 'mr-2' : ''}`} />,
+		confirm: <TbCheck className={`text-xl ${name ? 'mr-1' : ''}`} />,
 	};
 
 	return (
