@@ -1,5 +1,5 @@
-import { useDeleteRoutine } from '@/routine/routine.service';
-import { Modal } from '@/routine/components';
+import { useDeleteRoutine } from '@/features/routine/routine.service';
+import { Modal } from '@/features/routine/components';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
 import * as storeWS from '@/store/routine/actions';

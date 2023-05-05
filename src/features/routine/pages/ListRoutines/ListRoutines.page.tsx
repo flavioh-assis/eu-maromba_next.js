@@ -1,14 +1,17 @@
 import * as storeWS from '@/store/routine/actions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { CardRoutine } from '@/routine/components';
-import { ModalCreate } from '@/routine/components';
+import { CardRoutine } from '@/features/routine/components';
+import { ModalCreate } from '@/features/routine/components';
 import { useEffect, useState } from 'react';
 import { FlexCol, FlexRow, Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import { toast } from 'react-toastify';
 import { Button } from '@/shared/components/Button/Button';
-import { useGetAllRoutines, useReorderRoutines } from '@/routine/routine.service';
-import { ReorderRoutineDto, Routine } from '@/routine/routine.types';
+import {
+	useGetAllRoutines,
+	useReorderRoutines,
+} from '@/features/routine/routine.service';
+import { ReorderRoutineDto, Routine } from '@/features/routine/routine.types';
 
 export const ListRoutines = () => {
 	const dispatch = useAppDispatch();

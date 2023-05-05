@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HiPencil } from 'react-icons/hi';
 import { IoTrash } from 'react-icons/io5';
 import { useRouter } from 'next/router';
-import { ModalDelete, ModalUpdate } from '@/routine/components';
+import { ModalDelete, ModalUpdate } from '@/features/routine/components';
 import { Card, CardTitle, FlexRow, TrainingAmount } from '@/styles/styled';
 import { MdDragIndicator } from 'react-icons/md';
 import { Draggable } from 'react-beautiful-dnd';

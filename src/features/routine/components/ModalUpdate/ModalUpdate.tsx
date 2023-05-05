@@ -1,10 +1,10 @@
-import { useUpdateRoutine } from '@/routine/routine.service';
-import { InputModal, Modal } from '@/routine/components';
+import { useUpdateRoutine } from '@/features/routine/routine.service';
+import { InputModal, Modal } from '@/features/routine/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/store/hooks';
 import * as store from '@/store/routine/actions';
-import { UpdateRoutineDto } from '@/routine/routine.types';
+import { UpdateRoutineDto } from '@/features/routine/routine.types';
 
 type Props = {
 	id: number;

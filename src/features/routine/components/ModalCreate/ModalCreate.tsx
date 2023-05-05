@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useCreateRoutine } from '@/routine/routine.service';
+import { useCreateRoutine } from '@/features/routine/routine.service';
 import { toast } from 'react-toastify';
-import { InputModal, Modal } from '@/routine/components';
+import { InputModal, Modal } from '@/features/routine/components';
 import { useAppDispatch } from '@/store/hooks';
 import { add } from '@/store/routine/actions';
-import { CreateRoutineDto } from '@/routine/routine.types';
+import { CreateRoutineDto } from '@/features/routine/routine.types';
 
 type Props = {
 	open: boolean;

@@ -1,4 +1,4 @@
-import { Routine } from '@/routine/routine.types';
+import { Routine } from '@/features/routine/routine.types';
 import { createAction } from '@reduxjs/toolkit';
 
 export const add = createAction<Routine>('routine/add');

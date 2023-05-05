@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Routine } from '@/routine/routine.types';
+import { Routine } from '@/features/routine/routine.types';
 import { add, populate, remove, reorder, update } from './actions';
 
 const initialState: Routine[] = [];
