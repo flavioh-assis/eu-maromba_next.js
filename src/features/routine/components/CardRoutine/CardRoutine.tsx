@@ -3,7 +3,7 @@ import { HiPencil } from 'react-icons/hi';
 import { IoTrash } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import { ModalDelete, ModalUpdate } from '@/features/routine/components';
-import { Card, CardTitle, FlexRow, TrainingAmount } from '@/styles/styled';
+import { Card, CardTitle } from '@/styles/styled';
 import { MdDragIndicator } from 'react-icons/md';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -62,13 +62,13 @@ export const CardRoutine = ({
 							role={!isDraggable ? 'button' : 'contentinfo'}
 							className='flex w-11/12 sm:w-10/12 items-center min-h-[4rem] sm:min-h-[8rem] text-left'
 						>
-							<FlexRow className='w-3/5'>
+							<span className='flex flex-row items-center w-3/5'>
 								<CardTitle>{name}</CardTitle>
-							</FlexRow>
+							</span>
 
-							<TrainingAmount className='w-2/5 '>
+							<span className='w-2/5 text-sm sm:text-xl '>
 								{trainingCount} {trainingCount != 1 ? 'treinos' : 'treino'}
-							</TrainingAmount>
+							</span>
 						</div>
 
 						<div className='flex items-center justify-end w-1/12 gap-1 sm:w-fit sm:gap-2'>

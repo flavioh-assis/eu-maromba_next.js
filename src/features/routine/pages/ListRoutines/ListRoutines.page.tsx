@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { CardRoutine } from '@/features/routine/components';
 import { ModalCreate } from '@/features/routine/components';
 import { useEffect, useState } from 'react';
-import { FlexCol, FlexRow, Page, Title } from '@/styles/styled';
+import { Page, Title } from '@/styles/styled';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import { toast } from 'react-toastify';
 import { Button } from '@/shared/components/Button/Button';
@@ -98,11 +98,12 @@ export const ListRoutines = () => {
 					<DragDropContext onDragEnd={onDragEnd}>
 						<Droppable droppableId='droppable'>
 							{(provided, _) => (
-								<FlexCol
+								<div
+									className='custom-flex-col'
 									ref={provided.innerRef}
 									{...provided.droppableProps}
 								>
-									<FlexCol>
+									<div className='custom-flex-col'>
 										{routines?.map((sheet, index) => (
 											<CardRoutine
 												key={sheet.id}
@@ -113,10 +114,10 @@ export const ListRoutines = () => {
 												isDraggable={isDraggable}
 											/>
 										))}
-									</FlexCol>
+									</div>
 									{provided.placeholder}
 
-									<FlexRow className='justify-center gap-4 mt-4'>
+									<div className='justify-center gap-4 mt-4 custom-flex-row'>
 										{isDraggable ? (
 											<Button
 												onClick={handleSave}
@@ -139,8 +140,8 @@ export const ListRoutines = () => {
 											type='default'
 											icon={isDraggable ? 'cancel' : 'reorder'}
 										/>
-									</FlexRow>
-								</FlexCol>
+									</div>
+								</div>
 							)}
 						</Droppable>
 					</DragDropContext>
