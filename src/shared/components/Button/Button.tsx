@@ -18,21 +18,19 @@ export const Button = ({
 	type = 'default',
 }: Props) => {
 	const defaultClass =
-		'flex items-center px-4 py-2 w-full sm:w-fit transition duration-300 rounded-md border justify-center text-md';
+		'flex items-center px-4 py-2 w-full sm:w-fit transition duration-300 rounded-md border justify-center text-md ';
 
-	const disabledClass = 'text-black text-opacity-25 ';
+	const disabledClass = 'text-black/25 ';
 
 	const classByType = {
 		disabled: {
-			default:
-				disabledClass + 'bg-black border border-black border-opacity-10 bg-opacity-5',
-			primary:
-				disabledClass + 'bg-black border border-black border-opacity-10 bg-opacity-5',
+			default: disabledClass + 'bg-black/5 border border-black/10',
+			primary: disabledClass + 'bg-black/5 border border-black/10',
 			text: disabledClass + 'text-black bg-transparent border-transparent',
 		},
 		enabled: {
 			default:
-				'text-black text-opacity-80 hover:text-blue-500 bg-white border-gray-200 hover:border-blue-500',
+				'text-black/80 hover:text-blue-500 bg-white border-gray-200 hover:border-blue-500',
 			primary: 'text-white bg-blue-600 hover:bg-blue-500',
 			text: 'text-black bg-transparent hover:bg-gray-200 border-transparent',
 		},
