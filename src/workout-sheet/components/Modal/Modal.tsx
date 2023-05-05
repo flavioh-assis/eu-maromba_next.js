@@ -1,3 +1,4 @@
+import { Button } from '@/shared/components';
 import { FC, ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';
 
@@ -34,19 +35,19 @@ export const Modal: FC<Props> = ({
 						{children}
 
 						<div className='flex justify-center gap-4 sm:justify-end'>
-							<button
+							<Button
 								onClick={toggleModal}
-								className='w-full px-4 py-2 text-black transition duration-300 rounded-md shadow-md hover:bg-gray-200 sm:w-auto'
-							>
-								Cancelar
-							</button>
+								name='Cancelar'
+								type='text'
+								icon='cancel'
+							/>
 
-							<button
+							<Button
 								onClick={handleConfirm}
-								className='w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-md shadow-md sm:w-auto hover:bg-blue-500'
-							>
-								Confirmar
-							</button>
+								type='primary'
+								name='Confirmar'
+								icon='confirm'
+							/>
 						</div>
 					</div>
 				</dialog>
