@@ -1,8 +1,6 @@
 import { useDeleteRoutine } from '@/features/routine/routine.service';
 import { Modal } from '@/features/routine/components';
 import { toast } from 'react-toastify';
-import { useAppDispatch } from '@/store/hooks';
-import * as storeWS from '@/store/routine/actions';
 
 type Props = {
 	id: number;
@@ -10,6 +8,7 @@ type Props = {
 	trainingCount: number;
 	routineTitle: string;
 	toggleModal: VoidFunction;
+	refetch: VoidFunction;
 };
 
 export const ModalDelete = ({
@@ -18,9 +17,8 @@ export const ModalDelete = ({
 	trainingCount,
 	routineTitle,
 	toggleModal,
+	refetch,
 }: Props) => {
-	const dispatch = useAppDispatch();
-
 	const { mutate } = useDeleteRoutine();
 
 	const handleDelete = () => {
@@ -29,7 +27,7 @@ export const ModalDelete = ({
 				toast.error('Algo deu errado.');
 			},
 			onSuccess: () => {
-				dispatch(storeWS.remove(id));
+				refetch();
 				toast.success('Ficha excluída!');
 				toggleModal();
 			},

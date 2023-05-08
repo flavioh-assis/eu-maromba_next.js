@@ -12,6 +12,7 @@ type Props = {
 	trainingCount: number;
 	cardIndex: number;
 	isDraggable: boolean;
+	refetch: VoidFunction;
 };
 
 export const CardRoutine = ({
@@ -20,6 +21,7 @@ export const CardRoutine = ({
 	trainingCount,
 	cardIndex,
 	isDraggable,
+	refetch,
 }: Props) => {
 	const router = useRouter();
 
@@ -101,6 +103,7 @@ export const CardRoutine = ({
 				trainingCount={trainingCount}
 				routineTitle={name}
 				toggleModal={toggleModalDelete}
+				refetch={refetch}
 			/>
 
 			<ModalUpdate
@@ -108,6 +111,7 @@ export const CardRoutine = ({
 				open={openModalUpdate}
 				currentRoutineTitle={name}
 				toggleModal={toggleModalUpdate}
+				refetch={refetch}
 			/>
 		</>
 	);

@@ -2,18 +2,15 @@ import { useState } from 'react';
 import { useCreateRoutine } from '@/features/routine/routine.service';
 import { toast } from 'react-toastify';
 import { InputModal, Modal } from '@/features/routine/components';
-import { useAppDispatch } from '@/store/hooks';
-import { add } from '@/store/routine/actions';
 import { CreateRoutineDto } from '@/features/routine/routine.types';
 
 type Props = {
 	open: boolean;
 	toggleModal: VoidFunction;
+	refetch: VoidFunction;
 };
 
-export const ModalCreate = ({ open, toggleModal }: Props) => {
-	const dispatch = useAppDispatch();
-
+export const ModalCreate = ({ open, toggleModal, refetch }: Props) => {
 	const { mutate } = useCreateRoutine();
 
 	const [title, setTitle] = useState('');
@@ -36,8 +33,8 @@ export const ModalCreate = ({ open, toggleModal }: Props) => {
 			onError: () => {
 				toast.error('Algo deu errado.');
 			},
-			onSuccess: response => {
-				dispatch(add(response));
+			onSuccess: () => {
+				refetch();
 				toast.success('Ficha criada!');
 				handleClose();
 			},

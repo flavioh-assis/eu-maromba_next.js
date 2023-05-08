@@ -2,8 +2,6 @@ import { useUpdateRoutine } from '@/features/routine/routine.service';
 import { InputModal, Modal } from '@/features/routine/components';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useAppDispatch } from '@/store/hooks';
-import * as store from '@/store/routine/actions';
 import { UpdateRoutineDto } from '@/features/routine/routine.types';
 
 type Props = {
@@ -11,11 +9,16 @@ type Props = {
 	open: boolean;
 	currentRoutineTitle: string;
 	toggleModal: VoidFunction;
+	refetch: VoidFunction;
 };
 
-export const ModalUpdate = ({ id, open, currentRoutineTitle, toggleModal }: Props) => {
-	const dispatch = useAppDispatch();
-
+export const ModalUpdate = ({
+	id,
+	open,
+	currentRoutineTitle,
+	toggleModal,
+	refetch,
+}: Props) => {
 	const { mutate } = useUpdateRoutine();
 
 	const [routineTitle, setRoutineTitle] = useState(currentRoutineTitle);
@@ -39,8 +42,8 @@ export const ModalUpdate = ({ id, open, currentRoutineTitle, toggleModal }: Prop
 			onError: () => {
 				toast.error('Algo deu errado.');
 			},
-			onSuccess: response => {
-				dispatch(store.update(response));
+			onSuccess: () => {
+				refetch();
 				toast.success('Ficha atualizada!');
 				toggleModal();
 			},

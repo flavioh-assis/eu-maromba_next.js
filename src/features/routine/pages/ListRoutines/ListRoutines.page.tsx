@@ -1,5 +1,3 @@
-import * as storeWS from '@/store/routine/actions';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { CardRoutine } from '@/features/routine/components';
 import { ModalCreate } from '@/features/routine/components';
 import { useEffect, useState } from 'react';
@@ -13,10 +11,7 @@ import {
 import { ReorderRoutineDto, Routine } from '@/features/routine/routine.types';
 
 export const ListRoutines = () => {
-	const dispatch = useAppDispatch();
-	const storeRoutines = useAppSelector(state => state.routine);
-
-	const { data: apiData } = useGetAllRoutines();
+	const { data: apiData, refetch } = useGetAllRoutines();
 	const { mutate } = useReorderRoutines();
 
 	const [routines, setRoutines] = useState<Routine[]>([]);
@@ -28,6 +23,10 @@ export const ListRoutines = () => {
 	const toggleModal = () => setOpenModal(open => !open);
 
 	const toggleIsDraggable = () => setIsDraggable(state => !state);
+
+	const refetchAllRoutines = () => {
+		refetch();
+	};
 
 	const onDragEnd = ({ destination, source }: DropResult) => {
 		if (!destination) return;
@@ -62,8 +61,7 @@ export const ListRoutines = () => {
 			onError: () => {
 				toast.error('Algo deu errado!');
 			},
-			onSuccess: response => {
-				dispatch(storeWS.reorder(response));
+			onSuccess: () => {
 				toast.success('Lista atualizada!');
 				toggleIsDraggable();
 			},
@@ -81,12 +79,8 @@ export const ListRoutines = () => {
 	};
 
 	useEffect(() => {
-		apiData && dispatch(storeWS.populate(apiData));
+		apiData && setRoutines(apiData);
 	}, [apiData]);
-
-	useEffect(() => {
-		storeRoutines.length && setRoutines(storeRoutines);
-	}, [storeRoutines]);
 
 	return (
 		<>
@@ -111,6 +105,7 @@ export const ListRoutines = () => {
 												name={sheet.name}
 												trainingCount={sheet.trainingCount || 0}
 												isDraggable={isDraggable}
+												refetch={refetchAllRoutines}
 											/>
 										))}
 									</div>
@@ -152,6 +147,7 @@ export const ListRoutines = () => {
 			<ModalCreate
 				open={openModal}
 				toggleModal={toggleModal}
+				refetch={refetchAllRoutines}
 			/>
 		</>
 	);
