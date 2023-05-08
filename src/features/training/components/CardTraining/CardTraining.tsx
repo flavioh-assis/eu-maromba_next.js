@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import gifAbs from './abs.gif';
+import placeholder from './placeholder.png';
 
 type TrainingProps = {
 	id: number;
@@ -25,23 +25,24 @@ export const CardTraining = ({
 	sets,
 }: TrainingProps) => {
 	return (
-		<div className='flex flex-col w-full gap-2 p-4 bg-white rounded-md shadow-md sm:flex-row sm:justify-start sm:gap-10'>
-			<Image
-				className='object-contain w-full h-full m-auto rounded-md max-h-96 sm:w-48 sm:max-h-48'
-				src={gifAbs}
-				alt=''
-			/>
+		<div className='flex flex-row w-full gap-4 p-4 bg-white rounded-md shadow-md'>
+			<div className='flex p-2 bg-white rounded-md h-30'>
+				<Image
+					className='object-contain h-full aspect-square'
+					src={placeholder}
+					alt=''
+				/>
+			</div>
 
 			<div className='flex flex-col flex-1 w-full h-full gap-2'>
-				<h5 className='text-xl font-bold text-gray-800'>{exerciseName}</h5>
+				<strong className='text-xl text-gray-800 '>{exerciseName}</strong>
 
 				<div className='flex flex-col'>
 					<span className='font-normal text-gray-700'>
-						{sets} série{reps > 1 && 's'}
+						{sets} {sets === 1 ? 'série' : 'séries'} de {reps}{' '}
+						{reps === 1 ? 'repetição' : 'repetições'}
 					</span>
-					<span className='font-normal text-gray-700'>
-						{reps} repetiç{reps > 1 ? 'ões' : 'ão'}
-					</span>
+
 					<span className='font-normal text-gray-700'>
 						{restTime} segundos de descanso
 					</span>

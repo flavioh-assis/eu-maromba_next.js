@@ -12,8 +12,8 @@ export const ListTrainings = () => {
 		const trainings = data || [];
 
 		return (
-			<main className='flex flex-col items-center min-h-screen gap-6 p-6'>
-				<h1 className='text-2xl font-bold'>Meus treinos</h1>
+			<main className='page'>
+				<h1 className='page-title'>Meus treinos</h1>
 
 				<div className='flex flex-col items-center w-full gap-3'>
 					{trainings.length ? (
